@@ -107,6 +107,50 @@
   .chip-row button.cabin-pre.active{background:#2d5234;border-color:#2d5234}
   .chip-row button.cabin-biz.active{background:var(--gold);border-color:var(--gold);color:#1a1a1a}
 
+  .sort-bar{
+    display:flex;gap:6px;flex-wrap:wrap;align-items:center;
+    background:#fff;padding:10px 12px;border-radius:10px;
+    margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.04)
+  }
+  .sort-bar .sort-label{font-size:11px;color:#666;font-weight:700;letter-spacing:.04em}
+  .sort-bar button{
+    padding:5px 11px;border:1.5px solid #d6dde6;background:#fff;
+    border-radius:14px;font-size:11px;font-weight:600;color:#445;
+    cursor:pointer;font-family:inherit;transition:all .15s
+  }
+  .sort-bar button:hover{border-color:var(--brand-color);color:var(--brand-color)}
+  .sort-bar button.active{background:#1a2733;color:#fff;border-color:#1a2733}
+
+  .rating-badge{
+    display:inline-block;font-size:10px;font-weight:700;
+    padding:3px 8px;border-radius:4px;letter-spacing:.04em
+  }
+  .rating-must{background:#ffe3e0;color:#c53030;border:1px solid #fcbab2}
+  .rating-good{background:#fff4d6;color:#8a6500;border:1px solid #f5d77c}
+  .rating-okay{background:#e8f5e9;color:#2e7d32;border:1px solid #b6dcb8}
+  .rating-watch{background:#eceff3;color:#666;border:1px solid #d6dde6}
+
+  .pro-comment{
+    background:linear-gradient(135deg,#fff8e6 0%,#fdf2cc 100%);
+    border-left:3px solid var(--gold);
+    padding:10px 12px;margin:0 14px 12px;border-radius:6px;
+    font-size:11.5px;line-height:1.6;color:#5a4500
+  }
+  .pro-comment .pro-label{
+    font-weight:700;color:#8a6500;font-size:10px;
+    letter-spacing:.04em;margin-right:4px
+  }
+
+  .normal-fare{
+    font-size:11px;color:#888;text-decoration:line-through;
+    margin-right:4px;font-weight:500
+  }
+  .discount-pct{
+    display:inline-block;font-size:10px;font-weight:700;
+    background:#ffe3e0;color:#c53030;
+    padding:1px 6px;border-radius:3px;margin-right:4px
+  }
+
   .more-toggle{
     width:100%;padding:8px;background:#f5f7fa;border:1px solid #e3e8ef;
     border-radius:8px;font-size:12px;font-weight:600;color:#445;
@@ -290,8 +334,22 @@
       <button data-cabin="BUSINESS" class="cabin-biz">ビジネス</button>
     </div>
 
+    <div class="filter-label">出発地</div>
+    <div class="chip-row" id="departChips">
+      <button data-depart="all" class="all active">すべての出発地</button>
+      <button data-depart="東京">東京（羽田/成田）</button>
+      <button data-depart="大阪">大阪（関空）</button>
+    </div>
+
     <div class="filter-label">行き先</div>
     <div id="cityChipsArea"></div>
+  </div>
+
+  <div class="sort-bar">
+    <span class="sort-label">並び替え</span>
+    <button data-sort="discount" class="active">🔥 お得順</button>
+    <button data-sort="price">💴 価格安い順</button>
+    <button data-sort="region">🌏 エリア順</button>
   </div>
 
   <div class="result-meta">
@@ -305,6 +363,7 @@
     <h4>⚠️ ご利用にあたっての注意</h4>
     <ul>
       <li>表示は <strong>日本発往復運賃の最低価格</strong>。期間・便により異なります</li>
+      <li><strong>通常価格目安・割引率・プロ目線コメントは当サイト独自の参考値</strong>であり、ANA公式値ではありません</li>
       <li>運賃額：2026年4-5月購入分の燃油特別付加運賃を含む。航空保険料・現地空港税は<strong>別途加算</strong></li>
       <li>東南アジア・インド・オーストラリア・東アジア路線は <strong>2026/11/1〜2027/3/31搭乗分でハイシーズン運賃</strong> 適用あり</li>
       <li>各運賃の座席数には限りあり。便によっては設定がない場合あり</li>
@@ -332,236 +391,304 @@ const REGIONS = {
   EAS: {label:"東アジア", short:"東アジア", tag:"region-EAS"}
 };
 
+// 通常価格目安は、当サイトが業界一般情報を元に算出した参考値（ANA公式値ではない）
 const ROUTES = [
   // === アメリカ・カナダ ===
-  {region:"NA", dest:"ハワイ", code:"HND/NRT⇄HNL",
+  {region:"NA", dest:"ハワイ", code:"HND/NRT⇄HNL", depart:"東京",
    period:"2026/7/1 〜 2027/3/31",
    excl:{jp:"2026/7/31-8/18, 9/17-9/20, 12/24-2027/1/3", os:"2026/7/31-8/18, 9/21-9/23, 12/24-2027/1/3"},
+   rating:"must", proComment:"ハワイ夏季エコノミーで12万円台は希少水準。お盆・シルバーウィーク・年末年始は除外なので、7月前半か9月後半・10〜11月の旅程なら確実に買い。",
    fares:[
-     {cabin:"ECONOMY", bookingClass:"K", fare:125800, changeable:false, productName:"Light"},
-     {cabin:"ECONOMY", bookingClass:"K", fare:129800, changeable:true, productName:"Value"}
+     {cabin:"ECONOMY", bookingClass:"K", fare:125800, normalFare:220000, changeable:false, productName:"Light"},
+     {cabin:"ECONOMY", bookingClass:"K", fare:129800, normalFare:220000, changeable:true, productName:"Value"}
    ]},
-  {region:"NA", dest:"ハワイ", variant:"成田発着便（NH181/NH182/NH183/NH184）", code:"NRT⇄HNL",
+  {region:"NA", dest:"ハワイ", variant:"成田発着便（NH181/NH182/NH183/NH184）", code:"NRT⇄HNL", depart:"東京",
    period:"2026/7/1 〜 2027/3/31",
    excl:{jp:"2026/7/31-8/18, 9/17-9/20, 12/24-2027/1/3", os:"2026/7/31-8/18, 9/21-9/23, 12/24-2027/1/3"},
+   rating:"must", proComment:"プレミアムエコノミー19万円は通常価格30万円台と比べ40%引きで滅多にない水準。シート幅・足元のゆとり優先なら買い。指定4便のみで枠は少なめ、早期確保推奨。",
    fares:[
-     {cabin:"PREMIUM", bookingClass:"N", fare:192800, changeable:false, productName:"Premium Economy Light"},
-     {cabin:"PREMIUM", bookingClass:"N", fare:202800, changeable:true, productName:"Premium Economy Value"}
+     {cabin:"PREMIUM", bookingClass:"N", fare:192800, normalFare:320000, changeable:false, productName:"Premium Economy Light"},
+     {cabin:"PREMIUM", bookingClass:"N", fare:202800, normalFare:320000, changeable:true, productName:"Premium Economy Value"}
    ]},
-  {region:"NA", dest:"ロサンゼルス", code:"LAX",
+  {region:"NA", dest:"ロサンゼルス", code:"LAX", depart:"東京",
    period:"2026/7/1 〜 2027/3/31", excl:{jp:"2026/8/7-8/10"},
+   rating:"must", proComment:"北米西海岸エコノミー21万円台は今年最安級。除外がお盆4日間のみと緩く、夏休み後半〜冬の旅程に組みやすい。",
    fares:[
-     {cabin:"ECONOMY", bookingClass:"K", fare:213200, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K", fare:243200, changeable:true}
+     {cabin:"ECONOMY", bookingClass:"K", fare:213200, normalFare:380000, changeable:false, productName:"Light"},
+     {cabin:"ECONOMY", bookingClass:"K", fare:243200, normalFare:380000, changeable:true, productName:"Value"}
    ]},
-  {region:"NA", dest:"サンフランシスコ", code:"SFO",
+  {region:"NA", dest:"サンフランシスコ", code:"SFO", depart:"東京",
    period:"2026/7/1 〜 2027/3/31", excl:{jp:"2026/8/7-8/10"},
+   rating:"must", proComment:"SFO直行は21万円台で破格。シリコンバレー・北カリフォルニア観光の起点として価値大。",
    fares:[
-     {cabin:"ECONOMY", bookingClass:"K", fare:213200, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K", fare:243200, changeable:true}
+     {cabin:"ECONOMY", bookingClass:"K", fare:213200, normalFare:380000, changeable:false, productName:"Light"},
+     {cabin:"ECONOMY", bookingClass:"K", fare:243200, normalFare:380000, changeable:true, productName:"Value"}
    ]},
-  {region:"NA", dest:"ニューヨーク", code:"JFK",
+  {region:"NA", dest:"ニューヨーク", code:"JFK", depart:"東京",
    period:"2026/7/1 〜 2027/3/31", excl:{jp:"2026/8/7-8/10"},
+   rating:"must", proComment:"北米東海岸（NYC）21万円台は破格。通常は40万円超え、夏のNYは45万でも珍しくない中、半額レベル。",
    fares:[
-     {cabin:"ECONOMY", bookingClass:"K", fare:213200, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K", fare:243200, changeable:true}
+     {cabin:"ECONOMY", bookingClass:"K", fare:213200, normalFare:420000, changeable:false, productName:"Light"},
+     {cabin:"ECONOMY", bookingClass:"K", fare:243200, normalFare:420000, changeable:true, productName:"Value"}
    ]},
-  {region:"NA", dest:"シアトル", code:"SEA",
+  {region:"NA", dest:"シアトル", code:"SEA", depart:"東京",
    period:"2026/7/1 〜 2027/3/31", excl:{jp:"2026/8/7-8/10"},
+   rating:"must", proComment:"シアトル21万円台、ANA直行便は競合少ない区間でこの価格は希少。アラスカ・PNW旅行の起点に。",
    fares:[
-     {cabin:"ECONOMY", bookingClass:"K", fare:213200, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K", fare:243200, changeable:true}
+     {cabin:"ECONOMY", bookingClass:"K", fare:213200, normalFare:370000, changeable:false, productName:"Light"},
+     {cabin:"ECONOMY", bookingClass:"K", fare:243200, normalFare:370000, changeable:true, productName:"Value"}
    ]},
-  {region:"NA", dest:"ワシントンD.C.", code:"IAD",
+  {region:"NA", dest:"ワシントンD.C.", code:"IAD", depart:"東京",
    period:"2026/7/1 〜 2027/3/31", excl:{jp:"2026/8/7-8/10"},
+   rating:"must", proComment:"ワシントンD.C.直行21万円台はANA限定の優位性大。米首都圏ビジネス・観光に最適。",
    fares:[
-     {cabin:"ECONOMY", bookingClass:"K", fare:213200, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K", fare:243200, changeable:true}
+     {cabin:"ECONOMY", bookingClass:"K", fare:213200, normalFare:400000, changeable:false, productName:"Light"},
+     {cabin:"ECONOMY", bookingClass:"K", fare:243200, normalFare:400000, changeable:true, productName:"Value"}
    ]},
-  {region:"NA", dest:"バンクーバー", code:"YVR",
+  {region:"NA", dest:"バンクーバー", code:"YVR", depart:"東京",
    period:"2026/7/1 〜 2027/3/31", excl:{jp:"2026/8/7-8/10"},
+   rating:"must", proComment:"バンクーバー21万円台はANAでは記録的安値水準。カナダ西海岸・カナディアンロッキー旅行の玄関口として。",
    fares:[
-     {cabin:"ECONOMY", bookingClass:"K", fare:213200, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K", fare:243200, changeable:true}
+     {cabin:"ECONOMY", bookingClass:"K", fare:213200, normalFare:360000, changeable:false, productName:"Light"},
+     {cabin:"ECONOMY", bookingClass:"K", fare:243200, normalFare:360000, changeable:true, productName:"Value"}
    ]},
 
   // === ヨーロッパ ===
-  {region:"EU", dest:"欧州各都市", variant:"ミラノ・パリ・ロンドン他", code:"MXP/CDG/LHR他",
+  {region:"EU", dest:"欧州各都市", variant:"ミラノ・パリ・ロンドン他", code:"MXP/CDG/LHR他", depart:"東京",
    period:"2026/10/1 〜 2027/3/28",
    excl:{jp:"2026/12/18-12/28", os:"2026/12/18-12/27"},
+   rating:"must", proComment:"欧州冬季の特価。10月〜3月の旅程限定だが、紅葉・クリスマスマーケット・冬の欧州都市を巡るなら17万円台は破格。年末年始は除外。",
    fares:[
-     {cabin:"ECONOMY", bookingClass:"K", fare:174200, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K", fare:184200, changeable:true}
+     {cabin:"ECONOMY", bookingClass:"K", fare:174200, normalFare:320000, changeable:false, productName:"Light"},
+     {cabin:"ECONOMY", bookingClass:"K", fare:184200, normalFare:320000, changeable:true, productName:"Value"}
    ]},
 
   // === 東南アジア・インド・オセアニア ===
-  {region:"SEA", dest:"クアラルンプール", code:"KUL",
+  {region:"SEA", dest:"クアラルンプール", code:"KUL", depart:"東京",
    period:"2026/7/1 〜 2027/3/31",
    excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29"},
+   rating:"must", proComment:"東南アジア・ハブKLが8万円台はANAでは滅多にない。LCC（AirAsia）と比べてもサービス込みで圧倒的お得。",
    fares:[
-     {cabin:"BUSINESS", bookingClass:"P", fare:319400, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K/L", fare:81000, changeable:false}
+     {cabin:"BUSINESS", bookingClass:"P", fare:319400, normalFare:600000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K/L", fare:81000, normalFare:180000, changeable:false}
    ]},
-  {region:"SEA", dest:"ホーチミンシティ", code:"SGN",
+  {region:"SEA", dest:"ホーチミンシティ", code:"SGN", depart:"東京",
    period:"2026/7/1 〜 2027/3/31",
    excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29"},
+   rating:"must", proComment:"ベトナム主要都市5万円切りは記録的水準。週末3〜4日の短期旅行〜長期滞在まで使い勝手抜群。",
    fares:[
-     {cabin:"BUSINESS", bookingClass:"P", fare:204400, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K/L", fare:49300, changeable:false}
+     {cabin:"BUSINESS", bookingClass:"P", fare:204400, normalFare:500000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K/L", fare:49300, normalFare:140000, changeable:false}
    ]},
-  {region:"SEA", dest:"ハノイ", code:"HAN",
+  {region:"SEA", dest:"ハノイ", code:"HAN", depart:"東京",
    period:"2026/7/1 〜 2027/3/31",
    excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29"},
+   rating:"must", proComment:"ハノイ5.4万円。北部ベトナム（ハロン湾・サパ）への玄関口で、観光旅行のコスパ最高水準。",
    fares:[
-     {cabin:"BUSINESS", bookingClass:"P", fare:204400, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K/L", fare:54300, changeable:false}
+     {cabin:"BUSINESS", bookingClass:"P", fare:204400, normalFare:500000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K/L", fare:54300, normalFare:150000, changeable:false}
    ]},
-  {region:"SEA", dest:"シンガポール", code:"SIN",
+  {region:"SEA", dest:"シンガポール", code:"SIN", depart:"東京",
    period:"2026/7/1 〜 2027/3/31",
    excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29"},
+   rating:"must", proComment:"シンガポール6.7万円はLCC（Scoot）並みの価格でフルサービス。東南アジアハブ・ストップオーバーにも最適。",
    fares:[
-     {cabin:"BUSINESS", bookingClass:"P", fare:384000, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K/L", fare:67000, changeable:false}
+     {cabin:"BUSINESS", bookingClass:"P", fare:384000, normalFare:700000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K/L", fare:67000, normalFare:180000, changeable:false}
    ]},
-  {region:"SEA", dest:"バンコク", code:"BKK",
+  {region:"SEA", dest:"バンコク", code:"BKK", depart:"東京",
    period:"2026/6/1 〜 2027/3/31",
    excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29"},
+   rating:"must", proComment:"タイ6.7万円。年中需要の高い人気路線で、6月から搭乗可能・期間も長く使い勝手抜群。",
    fares:[
-     {cabin:"BUSINESS", bookingClass:"P", fare:238000, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K/L", fare:67900, changeable:false}
+     {cabin:"BUSINESS", bookingClass:"P", fare:238000, normalFare:550000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K/L", fare:67900, normalFare:160000, changeable:false}
    ]},
-  {region:"SEA", dest:"マニラ", code:"MNL",
+  {region:"SEA", dest:"マニラ", code:"MNL", depart:"東京",
    period:"2026/7/1 〜 2027/3/31",
    excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29"},
+   rating:"must", proComment:"マニラ5万円台はANA直行最安水準。フィリピン渡航需要急増中、セブ・ボラカイへの乗継利用にも。",
    fares:[
-     {cabin:"BUSINESS", bookingClass:"P", fare:154400, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K", fare:50400, changeable:false}
+     {cabin:"BUSINESS", bookingClass:"P", fare:154400, normalFare:380000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:50400, normalFare:130000, changeable:false}
    ]},
-  {region:"SEA", dest:"ジャカルタ", code:"CGK",
+  {region:"SEA", dest:"ジャカルタ", code:"CGK", depart:"東京",
    period:"2026/7/1 〜 2027/3/31",
    excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29"},
+   rating:"good", proComment:"ジャカルタ10万円台は通常セールでも見られる水準。割引率は東南アジア中では控えめだが、バリ島乗継・出張ニーズには◎。",
    fares:[
-     {cabin:"BUSINESS", bookingClass:"P", fare:342800, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K/L", fare:108800, changeable:false}
+     {cabin:"BUSINESS", bookingClass:"P", fare:342800, normalFare:650000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K/L", fare:108800, normalFare:200000, changeable:false}
    ]},
-  {region:"SEA", dest:"デリー", code:"DEL",
+  {region:"SEA", dest:"デリー", code:"DEL", depart:"東京",
    period:"2026/6/1 〜 2027/3/31（ビジネス）／7/1〜（エコノミー）",
    excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29"},
+   rating:"must", proComment:"インド主要都市9万円台は破格水準。ANA直行は他社経由（シンガポール経由等）より時間短縮3〜5時間、ビジネス出張に有利。",
    fares:[
-     {cabin:"BUSINESS", bookingClass:"P", fare:474000, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K/L", fare:92000, changeable:false}
+     {cabin:"BUSINESS", bookingClass:"P", fare:474000, normalFare:850000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K/L", fare:92000, normalFare:240000, changeable:false}
    ]},
-  {region:"SEA", dest:"ムンバイ", code:"BOM",
+  {region:"SEA", dest:"ムンバイ", code:"BOM", depart:"東京",
    period:"2026/6/1 〜 2027/3/31",
    excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29"},
+   rating:"must", proComment:"ムンバイ9万円。インド西部の経済中心への直行便で、ビジネス出張・観光ともコスパ最高。",
    fares:[
-     {cabin:"BUSINESS", bookingClass:"P", fare:474000, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K/L", fare:90000, changeable:false}
+     {cabin:"BUSINESS", bookingClass:"P", fare:474000, normalFare:850000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K/L", fare:90000, normalFare:240000, changeable:false}
    ]},
-  {region:"SEA", dest:"シドニー", code:"SYD",
+  {region:"SEA", dest:"シドニー", code:"SYD", depart:"東京",
    period:"2026/7/1 〜 2027/3/31",
    excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29"},
+   rating:"must", proComment:"シドニーエコノミー13万円台はANAでは滅多にない水準。豪州はJetstarやQantasと比べてもANAサービス込みでお得。",
    fares:[
-     {cabin:"BUSINESS", bookingClass:"P", fare:486100, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K/L", fare:132000, changeable:false}
+     {cabin:"BUSINESS", bookingClass:"P", fare:486100, normalFare:850000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K/L", fare:132000, normalFare:300000, changeable:false}
    ]},
-  {region:"SEA", dest:"パース", code:"PER",
+  {region:"SEA", dest:"パース", code:"PER", depart:"東京",
    period:"2026/7/1 〜 2027/3/31",
    excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29"},
+   rating:"good", proComment:"パース直行便は便数限定。13.8万円はGW後の閑散期に見られるレベル、西豪州渡航希望者には貴重な機会。",
    fares:[
-     {cabin:"BUSINESS", bookingClass:"P", fare:456000, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K/L", fare:138000, changeable:false}
+     {cabin:"BUSINESS", bookingClass:"P", fare:456000, normalFare:850000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K/L", fare:138000, normalFare:300000, changeable:false}
    ]},
 
   // === 東アジア ===
-  {region:"EAS", dest:"台北（松山）", code:"TSA",
+  {region:"EAS", dest:"台北（松山）", code:"TSA", depart:"東京",
    period:"2026/7/1 〜 2027/3/31",
    excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29, 2027/2/7-2/14", os:"2027/1/30-2/6"},
+   rating:"good", proComment:"台北松山空港便は市内アクセス（MRT直結）が桃園より圧倒的に有利。6.8万円は台湾路線では標準的なセール水準。",
    fares:[
-     {cabin:"ECONOMY", bookingClass:"L", fare:68400, changeable:false}
+     {cabin:"ECONOMY", bookingClass:"L", fare:68400, normalFare:110000, changeable:false}
    ]},
-  {region:"EAS", dest:"香港", code:"HKG",
+  {region:"EAS", dest:"香港", code:"HKG", depart:"東京",
    period:"2026/6/1 〜 2027/3/31",
    excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29, 2027/2/7-2/14", os:"2027/1/30-2/6"},
+   rating:"must", proComment:"香港4万円台はLCC並み価格でフルサービス。フライト4時間台で行ける週末旅行先として最強コスパ、6月から搭乗可能。",
    fares:[
-     {cabin:"BUSINESS", bookingClass:"P", fare:174400, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K/L", fare:42400, changeable:false}
+     {cabin:"BUSINESS", bookingClass:"P", fare:174400, normalFare:380000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K/L", fare:42400, normalFare:120000, changeable:false}
    ]},
-  {region:"EAS", dest:"上海", variant:"東京発", code:"NRT⇄PVG",
+  {region:"EAS", dest:"上海", variant:"東京発", code:"NRT⇄PVG", depart:"東京",
    period:"2026/6/21 〜 2027/3/31",
    excl:{jp:"2026/8/7-8/10, 9/19-9/20, 10/6-10/11, 2027/2/10-2/15", os:"2026/9/24-10/4, 2027/2/4-2/7"},
+   rating:"must", proComment:"中国主要都市で最安水準4.6万円。フライト3時間台、週末利用可能な近距離国際線として極めて使いやすい。",
    fares:[
-     {cabin:"BUSINESS", bookingClass:"P", fare:111500, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K", fare:46500, changeable:false}
+     {cabin:"BUSINESS", bookingClass:"P", fare:111500, normalFare:280000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:46500, normalFare:130000, changeable:false}
    ]},
-  {region:"EAS", dest:"上海", variant:"大阪発", code:"KIX⇄PVG",
+  {region:"EAS", dest:"上海", variant:"大阪発", code:"KIX⇄PVG", depart:"大阪",
    period:"2026/6/21 〜 2027/3/31",
    excl:{jp:"2026/8/7-8/10, 9/19-9/20, 10/6-10/11, 2027/2/10-2/15", os:"2026/9/24-10/4, 2027/2/4-2/7"},
+   rating:"must", proComment:"関西発はさらに4千円安く4.2万円台。関西圏在住者には極めて有利、フライト2.5時間で上海へ。",
    fares:[
-     {cabin:"BUSINESS", bookingClass:"P", fare:106500, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K", fare:42500, changeable:false}
+     {cabin:"BUSINESS", bookingClass:"P", fare:106500, normalFare:260000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:42500, normalFare:120000, changeable:false}
    ]},
-  {region:"EAS", dest:"北京", variant:"東京発", code:"NRT⇄PEK",
+  {region:"EAS", dest:"北京", variant:"東京発", code:"NRT⇄PEK", depart:"東京",
    period:"2026/6/21 〜 2027/3/31",
    excl:{jp:"2026/8/7-8/10, 9/19-9/20, 10/6-10/11, 2027/2/10-2/15", os:"2026/9/24-10/4, 2027/2/4-2/7"},
+   rating:"must", proComment:"北京5万円は破格。中国ビジネス需要・個人観光ともに合う安定路線。",
    fares:[
-     {cabin:"BUSINESS", bookingClass:"P", fare:117500, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K", fare:50000, changeable:false}
+     {cabin:"BUSINESS", bookingClass:"P", fare:117500, normalFare:300000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:50000, normalFare:150000, changeable:false}
    ]},
-  {region:"EAS", dest:"北京", variant:"大阪発", code:"KIX⇄PEK",
+  {region:"EAS", dest:"北京", variant:"大阪発", code:"KIX⇄PEK", depart:"大阪",
    period:"2026/6/21 〜 2027/3/31",
    excl:{jp:"2026/8/7-8/10, 9/19-9/20, 10/6-10/11, 2027/2/10-2/15", os:"2026/9/24-10/4, 2027/2/4-2/7"},
+   rating:"must", proComment:"関西発はさらに割安4.6万円。中国出張なら関西経由で時間とコスト両方節約。",
    fares:[
-     {cabin:"BUSINESS", bookingClass:"P", fare:117500, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K", fare:46500, changeable:false}
+     {cabin:"BUSINESS", bookingClass:"P", fare:117500, normalFare:280000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:46500, normalFare:140000, changeable:false}
    ]},
-  {region:"EAS", dest:"広州", code:"CAN",
+  {region:"EAS", dest:"広州", code:"CAN", depart:"東京",
    period:"2026/6/21 〜 2027/3/31",
    excl:{jp:"2026/8/7-8/10, 9/19-9/20, 10/6-10/11, 2027/2/10-2/15", os:"2026/9/24-10/4, 2027/2/4-2/7"},
+   rating:"must", proComment:"広州6.3万円。香港経由よりも直行で時間節約3〜4時間、華南エリアビジネスに有利。",
    fares:[
-     {cabin:"ECONOMY", bookingClass:"K", fare:63500, changeable:false}
+     {cabin:"ECONOMY", bookingClass:"K", fare:63500, normalFare:170000, changeable:false}
    ]},
-  {region:"EAS", dest:"大連", code:"DLC",
+  {region:"EAS", dest:"大連", code:"DLC", depart:"東京",
    period:"2026/6/21 〜 2027/3/31",
    excl:{jp:"2026/8/7-8/10, 9/19-9/20, 10/6-10/11, 2027/2/10-2/15", os:"2026/9/24-10/4, 2027/2/4-2/7"},
+   rating:"must", proComment:"大連5.6万円。日系企業出張ニーズ高い東北部の窓口、フライト3時間で行ける。",
    fares:[
-     {cabin:"BUSINESS", bookingClass:"P", fare:122500, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K", fare:56500, changeable:false}
+     {cabin:"BUSINESS", bookingClass:"P", fare:122500, normalFare:300000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:56500, normalFare:160000, changeable:false}
    ]},
-  {region:"EAS", dest:"杭州", code:"HGH",
+  {region:"EAS", dest:"杭州", code:"HGH", depart:"東京",
    period:"2026/6/21 〜 2027/3/31",
    excl:{jp:"2026/8/7-8/10, 9/19-9/20, 10/6-10/11, 2027/2/10-2/15", os:"2026/9/24-10/4, 2027/2/4-2/7"},
+   rating:"must", proComment:"杭州5.7万円。上海ハブ依存せず、観光地（西湖）直行で便利、フライト3.5時間。",
    fares:[
-     {cabin:"BUSINESS", bookingClass:"P", fare:127500, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K", fare:57000, changeable:false}
+     {cabin:"BUSINESS", bookingClass:"P", fare:127500, normalFare:310000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:57000, normalFare:170000, changeable:false}
    ]},
-  {region:"EAS", dest:"深圳", code:"SZX",
+  {region:"EAS", dest:"深圳", code:"SZX", depart:"東京",
    period:"2026/6/21 〜 2027/3/31",
    excl:{jp:"2026/8/7-8/10, 9/19-9/20, 10/6-10/11, 2027/2/10-2/15", os:"2026/9/24-10/4, 2027/2/4-2/7"},
+   rating:"must", proComment:"深圳6.7万円。テック企業ハブとして注目、香港イミグレ不要で出張効率良し。",
    fares:[
-     {cabin:"BUSINESS", bookingClass:"P", fare:136500, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K", fare:67500, changeable:false}
+     {cabin:"BUSINESS", bookingClass:"P", fare:136500, normalFare:330000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:67500, normalFare:190000, changeable:false}
    ]},
-  {region:"EAS", dest:"青島", code:"TAO",
+  {region:"EAS", dest:"青島", code:"TAO", depart:"東京",
    period:"2026/6/21 〜 2027/3/31",
    excl:{jp:"2026/8/7-8/10, 9/19-9/20, 10/6-10/11, 2027/2/10-2/15", os:"2026/9/24-10/4, 2027/2/4-2/7"},
+   rating:"must", proComment:"青島6.9万円。日本人観光客が比較的少なく、現地物価も安いコスパ路線、ビールの街として有名。",
    fares:[
-     {cabin:"BUSINESS", bookingClass:"P", fare:129500, changeable:false},
-     {cabin:"ECONOMY", bookingClass:"K", fare:69500, changeable:false}
+     {cabin:"BUSINESS", bookingClass:"P", fare:129500, normalFare:300000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:69500, normalFare:170000, changeable:false}
    ]}
 ];
 
+const RATING_CONFIG = {
+  must: {label:"🔥 超お得", cls:"rating-must"},
+  good: {label:"⭐ お得", cls:"rating-good"},
+  okay: {label:"✓ 標準", cls:"rating-okay"},
+  watch: {label:"⚪ 様子見", cls:"rating-watch"}
+};
+
+function calcDiscount(fare, normal){
+  if(!normal || normal<=fare) return null;
+  return Math.round((1 - fare/normal) * 100);
+}
+
+function getCheapestEcoFare(r){
+  const eco = r.fares.filter(f=>f.cabin==="ECONOMY" || f.cabin==="PREMIUM");
+  if(eco.length===0) return r.fares[0];
+  return eco.sort((a,b)=>a.fare-b.fare)[0];
+}
+
 const BOOKING_URL = "https://www.ana.co.jp/ja/jp/international/theme/special_prj/";
 
-let state = {region:"all", cabin:"all", city:"all"};
+let state = {region:"all", cabin:"all", city:"all", depart:"all", sort:"discount"};
 
 function render(){
   let routes = ROUTES.filter(r=>{
     if(state.region!=="all" && r.region!==state.region)return false;
     if(state.city!=="all" && r.dest!==state.city)return false;
     if(state.cabin!=="all" && !r.fares.some(f=>f.cabin===state.cabin))return false;
+    if(state.depart!=="all" && r.depart!==state.depart)return false;
     return true;
   });
+
+  // ソート
+  routes = routes.slice();
+  if(state.sort==="discount"){
+    routes.sort((a,b)=>{
+      const fa = getCheapestEcoFare(a);
+      const fb = getCheapestEcoFare(b);
+      const da = calcDiscount(fa.fare, fa.normalFare) || 0;
+      const db = calcDiscount(fb.fare, fb.normalFare) || 0;
+      return db - da;
+    });
+  } else if(state.sort==="price"){
+    routes.sort((a,b)=>getCheapestEcoFare(a).fare - getCheapestEcoFare(b).fare);
+  } else if(state.sort==="region"){
+    const order = {NA:1, EU:2, SEA:3, EAS:4};
+    routes.sort((a,b)=>(order[a.region]||9)-(order[b.region]||9));
+  }
 
   document.getElementById("resultCount").textContent = routes.length;
 
@@ -575,12 +702,21 @@ function render(){
     const region = REGIONS[r.region];
     const fares = state.cabin==="all" ? r.fares : r.fares.filter(f=>f.cabin===state.cabin);
     const variantTag = r.variant ? `<span class="from-tag">${r.variant}</span>` : '';
+    const departTag = r.depart ? `<span class="from-tag">出発: ${r.depart}</span>` : '';
+
+    const rating = r.rating ? RATING_CONFIG[r.rating] : null;
+    const ratingTag = rating ? `<span class="rating-badge ${rating.cls}">${rating.label}</span>` : '';
 
     const excl = r.excl ? `
       <div class="excl">
         <span class="excl-label">除外</span>
         ${r.excl.jp?'日本発: '+r.excl.jp:''}
         ${r.excl.os?'<br>海外発: '+r.excl.os:''}
+      </div>` : '';
+
+    const proComment = r.proComment ? `
+      <div class="pro-comment">
+        <span class="pro-label">💼 プロ目線</span>${r.proComment}
       </div>` : '';
 
     const faresHTML = fares.map(f=>{
@@ -590,19 +726,31 @@ function render(){
         ? '<span class="changeable-tag yes">変更可</span>払い戻し不可（手数料あり）'
         : '<span class="changeable-tag no">変更不可</span>払い戻し不可';
       const productTag = f.productName ? `<div style="font-size:10px;color:#666;font-weight:600;margin-bottom:2px;">${f.productName}</div>` : '';
+
+      const discount = calcDiscount(f.fare, f.normalFare);
+      const normalDisplay = f.normalFare ?
+        `<div style="font-size:10px;color:#888;margin-bottom:2px;">
+          <span class="normal-fare">通常目安 ${f.normalFare.toLocaleString()}円</span>
+          ${discount?`<span class="discount-pct">${discount}%OFF</span>`:''}
+        </div>` : '';
+
       return `<div class="fare-row">
         <div class="fare-cabin ${cabinClass}">
           <span class="cabin-name">${cabinLabel}</span>
           <span class="booking-class">クラス: ${f.bookingClass}</span>
         </div>
-        <div class="fare-info">${productTag}${chg}</div>
+        <div class="fare-info">${productTag}${normalDisplay}${chg}</div>
         <div class="fare-amount">${f.fare.toLocaleString()}<span class="yen">円</span><span class="from">〜</span></div>
       </div>`;
     }).join('');
 
     return `<div class="route-card">
       <div class="route-header">
-        <span class="route-region-tag ${region.tag}">${region.short}</span>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px;align-items:center;">
+          <span class="route-region-tag ${region.tag}">${region.short}</span>
+          ${ratingTag}
+          ${departTag}
+        </div>
         <div class="route-destination">
           ${r.dest}
           ${variantTag}
@@ -613,6 +761,7 @@ function render(){
         <span class="period-label">搭乗期間</span><span class="period-value">${r.period}</span>
         ${excl}
       </div>
+      ${proComment}
       <div class="fares-list">
         ${faresHTML}
         <a class="booking-cta" href="${BOOKING_URL}" target="_blank" rel="noopener">ANA公式で${r.dest}を検索 →</a>
@@ -646,6 +795,26 @@ document.querySelectorAll('#cabinChips button').forEach(btn=>{
   btn.addEventListener('click',()=>{
     state.cabin = btn.dataset.cabin;
     document.querySelectorAll('#cabinChips button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    render();
+  });
+});
+
+// Departure filter
+document.querySelectorAll('#departChips button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    state.depart = btn.dataset.depart;
+    document.querySelectorAll('#departChips button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    render();
+  });
+});
+
+// Sort
+document.querySelectorAll('.sort-bar button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    state.sort = btn.dataset.sort;
+    document.querySelectorAll('.sort-bar button').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     render();
   });
