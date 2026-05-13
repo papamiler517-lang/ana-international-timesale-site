@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANA 国際線タイムセール｜2026/5/13-5/17</title>
+<style>
+  :root{
+    --brand-color:#13448f;
+    --brand-color-dark:#0a2858;
+    --brand-color-light:#e3eaf6;
+    --accent:#d97550;
+    --accent-dark:#b85a35;
+    --gold:#c9a847;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    background:linear-gradient(180deg,#f5f7fa 0%,#e9eef5 100%);
+    color:#1a2733;line-height:1.55;min-height:100vh;
+    -webkit-font-smoothing:antialiased;padding-bottom:60px
+  }
+  .container{max-width:1080px;margin:0 auto;padding:16px}
+
+  header{
+    background:linear-gradient(135deg,var(--brand-color) 0%,var(--brand-color-dark) 100%);
+    color:#fff;padding:24px 16px;border-radius:14px;
+    box-shadow:0 6px 20px rgba(19,68,143,.25);margin-bottom:16px;
+    position:relative;overflow:hidden
+  }
+  header::before{
+    content:"";position:absolute;top:-60px;right:-60px;
+    width:220px;height:220px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%)
+  }
+  header h1{font-size:22px;font-weight:700;line-height:1.35;position:relative}
+  header .sub{font-size:13px;opacity:.92;margin-top:6px;font-weight:500;position:relative}
+  header .badge-row{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap;position:relative}
+  header .badge{
+    display:inline-block;background:rgba(255,255,255,.18);
+    padding:5px 11px;border-radius:20px;font-size:11px;
+    font-weight:600;letter-spacing:.04em
+  }
+  header .badge.live{background:#ff3a3a;animation:pulse 1.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+
+  .countdown{
+    background:#fff;border-radius:12px;padding:14px;margin-bottom:16px;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);text-align:center;
+    border-top:4px solid var(--accent)
+  }
+  .countdown .label{font-size:11px;color:#666;font-weight:600;letter-spacing:.06em}
+  .countdown .end{font-size:14px;font-weight:700;color:#1a2733;margin-top:4px}
+  .countdown .end .highlight{color:var(--accent);font-size:16px}
+
+  .cta-button{
+    display:block;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-dark) 100%);
+    color:#fff;text-align:center;padding:15px;border-radius:10px;
+    text-decoration:none;font-weight:700;font-size:14.5px;
+    box-shadow:0 2px 8px rgba(184,90,53,.18);margin-bottom:16px;
+    transition:transform .15s, box-shadow .15s;
+    letter-spacing:.02em
+  }
+  .cta-button:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(184,90,53,.28)}
+  .cta-button::after{content:" →";display:inline-block;margin-left:6px;opacity:.85}
+
+  .info-box{
+    background:#fff;border-radius:12px;padding:14px 16px;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:16px;
+    border-left:4px solid var(--brand-color)
+  }
+  .info-box h3{font-size:13px;color:var(--brand-color);font-weight:700;margin-bottom:8px}
+  .info-box dl{font-size:12px;color:#444}
+  .info-box dt{font-weight:700;color:#666;font-size:11px;margin-top:6px}
+  .info-box dt:first-child{margin-top:0}
+  .info-box dd{margin-left:0;padding-bottom:4px}
+
+  .section-title{
+    font-size:16px;font-weight:700;color:#1a2733;margin:20px 4px 10px;
+    display:flex;align-items:center;gap:8px
+  }
+  .section-title::before{content:"";width:4px;height:18px;background:var(--brand-color);border-radius:2px}
+
+  .filter-section{
+    background:#fff;border-radius:14px;padding:16px;
+    box-shadow:0 2px 12px rgba(0,0,0,.06);margin-bottom:16px
+  }
+  .filter-label{
+    font-size:11px;font-weight:700;color:#666;
+    letter-spacing:.08em;margin:0 0 8px;
+    display:flex;align-items:center;gap:6px
+  }
+  .filter-label::before{content:"";width:3px;height:11px;background:var(--brand-color);border-radius:2px}
+  .filter-label:not(:first-child){margin-top:14px}
+
+  .chip-row{display:flex;flex-wrap:wrap;gap:6px}
+  .chip-row button{
+    padding:7px 12px;border:1.5px solid #d6dde6;background:#fff;
+    border-radius:18px;font-size:12px;font-weight:600;color:#445;
+    cursor:pointer;transition:all .15s;font-family:inherit;white-space:nowrap
+  }
+  .chip-row button:hover{border-color:var(--brand-color);color:var(--brand-color)}
+  .chip-row button.active{background:#1a2733;color:#fff;border-color:#1a2733}
+  .chip-row button.all{background:var(--brand-color-light);border-color:var(--brand-color)}
+  .chip-row button.all.active{background:var(--brand-color);color:#fff;border-color:var(--brand-color)}
+  .chip-row button.cabin-eco.active{background:#0078a8;border-color:#0078a8}
+  .chip-row button.cabin-pre.active{background:#2d5234;border-color:#2d5234}
+  .chip-row button.cabin-biz.active{background:var(--gold);border-color:var(--gold);color:#1a1a1a}
+
+  .more-toggle{
+    width:100%;padding:8px;background:#f5f7fa;border:1px solid #e3e8ef;
+    border-radius:8px;font-size:12px;font-weight:600;color:#445;
+    cursor:pointer;font-family:inherit;margin-top:8px;
+    display:flex;align-items:center;justify-content:center;gap:6px
+  }
+  .more-toggle:hover{background:#eef1f5}
+  .more-toggle .chevron{font-size:9px;transition:transform .2s}
+  .more-toggle.open .chevron{transform:rotate(180deg)}
+  .more-cities{display:none}
+  .more-cities.show{display:block}
+
+  .result-meta{
+    font-size:12px;color:#666;margin:14px 4px 10px;
+    display:flex;justify-content:space-between;align-items:center
+  }
+  .result-meta .count{font-weight:700;color:var(--brand-color)}
+
+  .route-grid{display:grid;gap:14px}
+  .route-card{
+    background:#fff;border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+    overflow:hidden;transition:transform .15s
+  }
+  .route-card:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.12)}
+
+  .route-header{padding:14px 14px 10px;border-bottom:1px solid #f0f3f7}
+  .route-region-tag{
+    display:inline-block;font-size:10px;font-weight:700;
+    padding:2px 7px;border-radius:4px;margin-bottom:6px;
+    letter-spacing:.04em
+  }
+  .region-NA{background:#fce8e6;color:#c53030}
+  .region-EU{background:#e6f2ff;color:#1e5599}
+  .region-SEA{background:#fff4d6;color:#8a6d00}
+  .region-EAS{background:#e8f5e9;color:#2e7d32}
+
+  .route-destination{
+    font-size:18px;font-weight:800;color:#1a2733;
+    display:flex;align-items:center;gap:8px;flex-wrap:wrap
+  }
+  .route-destination .from-tag{
+    font-size:10px;color:#888;font-weight:600;
+    background:#f5f7fa;padding:2px 7px;border-radius:4px
+  }
+  .route-airport-code{
+    font-size:11px;color:#888;font-family:"SF Mono",Menlo,monospace;
+    margin-top:4px;letter-spacing:.04em
+  }
+
+  .route-period{
+    padding:10px 14px;background:#fafbfc;font-size:11px;color:#555;
+    border-bottom:1px solid #f0f3f7
+  }
+  .route-period .period-label{font-weight:700;color:var(--brand-color);font-size:10px}
+  .route-period .period-value{color:#333;margin-left:4px}
+  .route-period .excl{
+    margin-top:4px;font-size:10px;color:#888;line-height:1.5
+  }
+  .route-period .excl-label{font-weight:700;color:#c53030}
+
+  .fares-list{padding:10px 14px 14px}
+  .fare-row{
+    display:grid;grid-template-columns:auto 1fr auto;align-items:center;
+    gap:10px;padding:10px 0;border-bottom:1px dashed #e8ecf1
+  }
+  .fare-row:last-child{border-bottom:none}
+  .fare-cabin{
+    display:flex;flex-direction:column;align-items:center;
+    padding:6px 8px;border-radius:6px;min-width:74px
+  }
+  .fare-cabin.eco{background:#e3eaf6;color:#1e5599}
+  .fare-cabin.biz{background:#fff4d6;color:#8a6d00}
+  .fare-cabin.premium{background:#e0efe3;color:#2d5234}
+  .fare-cabin .cabin-name{font-size:10px;font-weight:700;letter-spacing:.04em}
+  .fare-cabin .booking-class{font-size:9px;margin-top:1px;opacity:.85}
+
+  .fare-info{font-size:11px;color:#666;line-height:1.5}
+  .fare-info .changeable-tag{
+    display:inline-block;font-size:9px;font-weight:700;
+    padding:2px 6px;border-radius:3px;margin-right:4px;
+    letter-spacing:.04em
+  }
+  .changeable-tag.no{background:#fce8e6;color:#c53030}
+  .changeable-tag.yes{background:#e8f5e9;color:#2e7d32}
+
+  .fare-amount{
+    font-size:18px;font-weight:800;color:var(--accent);
+    text-align:right;line-height:1;letter-spacing:-.01em
+  }
+  .fare-amount .yen{font-size:11px;color:#666;font-weight:600;margin-left:1px}
+  .fare-amount .from{font-size:10px;color:#888;font-weight:600;margin-left:1px}
+
+  .booking-cta{
+    display:block;text-align:center;padding:10px;margin-top:12px;
+    background:var(--brand-color);color:#fff;text-decoration:none;
+    border-radius:8px;font-size:12px;font-weight:700;
+    transition:background .15s
+  }
+  .booking-cta:hover{background:var(--brand-color-dark)}
+
+  .empty-state{
+    text-align:center;padding:50px 20px;color:#888;
+    background:#fff;border-radius:12px
+  }
+  .empty-state .icon{font-size:36px;margin-bottom:10px;opacity:.4}
+
+  .note-box{
+    background:#fffbf0;border:1px solid #ffe5a0;
+    border-radius:10px;padding:12px 14px;margin-bottom:16px
+  }
+  .note-box h4{font-size:12px;color:#8a6500;font-weight:700;margin-bottom:6px}
+  .note-box ul{font-size:11px;color:#5a4500;line-height:1.7;padding-left:14px}
+  .note-box li{margin-bottom:3px}
+
+  footer{
+    text-align:center;margin-top:30px;padding:20px;
+    font-size:11px;color:#888;line-height:1.7
+  }
+  footer .official-link{
+    color:var(--brand-color);text-decoration:none;font-weight:700
+  }
+  footer .official-link:hover{text-decoration:underline}
+
+  @media(min-width:600px){
+    .container{padding:24px}
+    header{padding:30px 24px}
+    header h1{font-size:26px}
+    .route-grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(min-width:1000px){.route-grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>🌏 ANA 国際線航空券タイムセール</h1>
+    <div class="sub">エコノミー / ビジネス / プレミアムエコノミー対象</div>
+    <div class="badge-row">
+      <span class="badge live">● 開催中</span>
+      <span class="badge">販売: 2026/5/13 - 5/17</span>
+      <span class="badge">搭乗: 2026/6/1 - 2027/3/31</span>
+    </div>
+  </header>
+
+  <div class="countdown">
+    <div class="label">⏰ セール販売終了</div>
+    <div class="end"><span class="highlight">2026年5月17日（日）23:59</span> まで</div>
+  </div>
+
+  <a class="cta-button" href="https://www.ana.co.jp/ja/jp/international/theme/special_prj/" target="_blank" rel="noopener">
+    ANA公式サイトで空席照会・予約する
+  </a>
+
+  <div class="info-box">
+    <h3>📋 タイムセール概要</h3>
+    <dl>
+      <dt>販売期間</dt>
+      <dd>2026年5月13日（水）0:00 〜 5月17日（日）23:59</dd>
+      <dt>搭乗期間</dt>
+      <dd>2026年6月1日（月）〜 2027年3月31日（水） <span style="color:#888;font-size:10px;">※路線により搭乗期間・適用除外期間が異なります</span></dd>
+      <dt>対象クラス</dt>
+      <dd>エコノミー／一部路線でビジネスクラス／ハワイ路線でプレミアムエコノミー</dd>
+      <dt>運賃に含まれる</dt>
+      <dd>燃油特別付加運賃（2026年4-5月購入分）／別途：航空保険料・現地空港税</dd>
+    </dl>
+  </div>
+
+  <div class="section-title">🌏 行き先で絞り込む</div>
+
+  <div class="filter-section">
+    <div class="filter-label">エリア</div>
+    <div class="chip-row" id="regionChips"></div>
+
+    <div class="filter-label">クラス</div>
+    <div class="chip-row" id="cabinChips">
+      <button data-cabin="all" class="all active">すべてのクラス</button>
+      <button data-cabin="ECONOMY" class="cabin-eco">エコノミー</button>
+      <button data-cabin="PREMIUM" class="cabin-pre">プレミアムエコノミー</button>
+      <button data-cabin="BUSINESS" class="cabin-biz">ビジネス</button>
+    </div>
+
+    <div class="filter-label">行き先</div>
+    <div id="cityChipsArea"></div>
+  </div>
+
+  <div class="result-meta">
+    <span><span class="count" id="resultCount">0</span> 路線</span>
+    <span style="font-size:10px;color:#888;">日本発往復運賃（〜から）</span>
+  </div>
+
+  <div class="route-grid" id="routeGrid"></div>
+
+  <div class="note-box" style="margin-top:20px;">
+    <h4>⚠️ ご利用にあたっての注意</h4>
+    <ul>
+      <li>表示は <strong>日本発往復運賃の最低価格</strong>。期間・便により異なります</li>
+      <li>運賃額：2026年4-5月購入分の燃油特別付加運賃を含む。航空保険料・現地空港税は<strong>別途加算</strong></li>
+      <li>東南アジア・インド・オーストラリア・東アジア路線は <strong>2026/11/1〜2027/3/31搭乗分でハイシーズン運賃</strong> 適用あり</li>
+      <li>各運賃の座席数には限りあり。便によっては設定がない場合あり</li>
+      <li>セール運賃は購入後の変更不可（変更可運賃は変更可・払戻不可）</li>
+      <li>運賃規則の詳細はANA公式の「運賃規則」ページで確認してください</li>
+      <li>除外期間に該当する日付は割引運賃の設定がありません</li>
+    </ul>
+  </div>
+
+  <a class="cta-button" href="https://www.ana.co.jp/ja/jp/international/theme/special_prj/" target="_blank" rel="noopener">
+    ANA公式サイトで空席照会・予約する
+  </a>
+
+  <footer>
+    <div>このサイトは <a class="official-link" href="https://www.ana.co.jp/ja/jp/international/theme/special_prj/" target="_blank" rel="noopener">ANA公式国際線タイムセールページ</a> の公開情報を元に作成された参考表示です</div>
+    <div style="margin-top:6px;">最新運賃・空席状況・運賃規則は必ずANA公式サイトで確認してください</div>
+  </footer>
+</div>
+
+<script>
+const REGIONS = {
+  NA: {label:"アメリカ・カナダ", short:"米加", tag:"region-NA"},
+  EU: {label:"ヨーロッパ", short:"欧州", tag:"region-EU"},
+  SEA: {label:"東南アジア・インド・オセアニア", short:"東南ア・印・豪", tag:"region-SEA"},
+  EAS: {label:"東アジア", short:"東アジア", tag:"region-EAS"}
+};
+
+const ROUTES = [
+  // === アメリカ・カナダ ===
+  {region:"NA", dest:"ハワイ", code:"HND/NRT⇄HNL",
+   period:"2026/7/1 〜 2027/3/31",
+   excl:{jp:"2026/7/31-8/18, 9/17-9/20, 12/24-2027/1/3", os:"2026/7/31-8/18, 9/21-9/23, 12/24-2027/1/3"},
+   fares:[
+     {cabin:"ECONOMY", bookingClass:"K", fare:125800, changeable:false, productName:"Light"},
+     {cabin:"ECONOMY", bookingClass:"K", fare:129800, changeable:true, productName:"Value"}
+   ]},
+  {region:"NA", dest:"ハワイ", variant:"成田発着便（NH181/NH182/NH183/NH184）", code:"NRT⇄HNL",
+   period:"2026/7/1 〜 2027/3/31",
+   excl:{jp:"2026/7/31-8/18, 9/17-9/20, 12/24-2027/1/3", os:"2026/7/31-8/18, 9/21-9/23, 12/24-2027/1/3"},
+   fares:[
+     {cabin:"PREMIUM", bookingClass:"N", fare:192800, changeable:false, productName:"Premium Economy Light"},
+     {cabin:"PREMIUM", bookingClass:"N", fare:202800, changeable:true, productName:"Premium Economy Value"}
+   ]},
+  {region:"NA", dest:"ロサンゼルス", code:"LAX",
+   period:"2026/7/1 〜 2027/3/31", excl:{jp:"2026/8/7-8/10"},
+   fares:[
+     {cabin:"ECONOMY", bookingClass:"K", fare:213200, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:243200, changeable:true}
+   ]},
+  {region:"NA", dest:"サンフランシスコ", code:"SFO",
+   period:"2026/7/1 〜 2027/3/31", excl:{jp:"2026/8/7-8/10"},
+   fares:[
+     {cabin:"ECONOMY", bookingClass:"K", fare:213200, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:243200, changeable:true}
+   ]},
+  {region:"NA", dest:"ニューヨーク", code:"JFK",
+   period:"2026/7/1 〜 2027/3/31", excl:{jp:"2026/8/7-8/10"},
+   fares:[
+     {cabin:"ECONOMY", bookingClass:"K", fare:213200, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:243200, changeable:true}
+   ]},
+  {region:"NA", dest:"シアトル", code:"SEA",
+   period:"2026/7/1 〜 2027/3/31", excl:{jp:"2026/8/7-8/10"},
+   fares:[
+     {cabin:"ECONOMY", bookingClass:"K", fare:213200, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:243200, changeable:true}
+   ]},
+  {region:"NA", dest:"ワシントンD.C.", code:"IAD",
+   period:"2026/7/1 〜 2027/3/31", excl:{jp:"2026/8/7-8/10"},
+   fares:[
+     {cabin:"ECONOMY", bookingClass:"K", fare:213200, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:243200, changeable:true}
+   ]},
+  {region:"NA", dest:"バンクーバー", code:"YVR",
+   period:"2026/7/1 〜 2027/3/31", excl:{jp:"2026/8/7-8/10"},
+   fares:[
+     {cabin:"ECONOMY", bookingClass:"K", fare:213200, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:243200, changeable:true}
+   ]},
+
+  // === ヨーロッパ ===
+  {region:"EU", dest:"欧州各都市", variant:"ミラノ・パリ・ロンドン他", code:"MXP/CDG/LHR他",
+   period:"2026/10/1 〜 2027/3/28",
+   excl:{jp:"2026/12/18-12/28", os:"2026/12/18-12/27"},
+   fares:[
+     {cabin:"ECONOMY", bookingClass:"K", fare:174200, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:184200, changeable:true}
+   ]},
+
+  // === 東南アジア・インド・オセアニア ===
+  {region:"SEA", dest:"クアラルンプール", code:"KUL",
+   period:"2026/7/1 〜 2027/3/31",
+   excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29"},
+   fares:[
+     {cabin:"BUSINESS", bookingClass:"P", fare:319400, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K/L", fare:81000, changeable:false}
+   ]},
+  {region:"SEA", dest:"ホーチミンシティ", code:"SGN",
+   period:"2026/7/1 〜 2027/3/31",
+   excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29"},
+   fares:[
+     {cabin:"BUSINESS", bookingClass:"P", fare:204400, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K/L", fare:49300, changeable:false}
+   ]},
+  {region:"SEA", dest:"ハノイ", code:"HAN",
+   period:"2026/7/1 〜 2027/3/31",
+   excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29"},
+   fares:[
+     {cabin:"BUSINESS", bookingClass:"P", fare:204400, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K/L", fare:54300, changeable:false}
+   ]},
+  {region:"SEA", dest:"シンガポール", code:"SIN",
+   period:"2026/7/1 〜 2027/3/31",
+   excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29"},
+   fares:[
+     {cabin:"BUSINESS", bookingClass:"P", fare:384000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K/L", fare:67000, changeable:false}
+   ]},
+  {region:"SEA", dest:"バンコク", code:"BKK",
+   period:"2026/6/1 〜 2027/3/31",
+   excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29"},
+   fares:[
+     {cabin:"BUSINESS", bookingClass:"P", fare:238000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K/L", fare:67900, changeable:false}
+   ]},
+  {region:"SEA", dest:"マニラ", code:"MNL",
+   period:"2026/7/1 〜 2027/3/31",
+   excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29"},
+   fares:[
+     {cabin:"BUSINESS", bookingClass:"P", fare:154400, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:50400, changeable:false}
+   ]},
+  {region:"SEA", dest:"ジャカルタ", code:"CGK",
+   period:"2026/7/1 〜 2027/3/31",
+   excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29"},
+   fares:[
+     {cabin:"BUSINESS", bookingClass:"P", fare:342800, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K/L", fare:108800, changeable:false}
+   ]},
+  {region:"SEA", dest:"デリー", code:"DEL",
+   period:"2026/6/1 〜 2027/3/31（ビジネス）／7/1〜（エコノミー）",
+   excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29"},
+   fares:[
+     {cabin:"BUSINESS", bookingClass:"P", fare:474000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K/L", fare:92000, changeable:false}
+   ]},
+  {region:"SEA", dest:"ムンバイ", code:"BOM",
+   period:"2026/6/1 〜 2027/3/31",
+   excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29"},
+   fares:[
+     {cabin:"BUSINESS", bookingClass:"P", fare:474000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K/L", fare:90000, changeable:false}
+   ]},
+  {region:"SEA", dest:"シドニー", code:"SYD",
+   period:"2026/7/1 〜 2027/3/31",
+   excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29"},
+   fares:[
+     {cabin:"BUSINESS", bookingClass:"P", fare:486100, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K/L", fare:132000, changeable:false}
+   ]},
+  {region:"SEA", dest:"パース", code:"PER",
+   period:"2026/7/1 〜 2027/3/31",
+   excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29"},
+   fares:[
+     {cabin:"BUSINESS", bookingClass:"P", fare:456000, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K/L", fare:138000, changeable:false}
+   ]},
+
+  // === 東アジア ===
+  {region:"EAS", dest:"台北（松山）", code:"TSA",
+   period:"2026/7/1 〜 2027/3/31",
+   excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29, 2027/2/7-2/14", os:"2027/1/30-2/6"},
+   fares:[
+     {cabin:"ECONOMY", bookingClass:"L", fare:68400, changeable:false}
+   ]},
+  {region:"EAS", dest:"香港", code:"HKG",
+   period:"2026/6/1 〜 2027/3/31",
+   excl:{jp:"2026/8/7-8/11, 9/18-9/20, 12/26-12/29, 2027/2/7-2/14", os:"2027/1/30-2/6"},
+   fares:[
+     {cabin:"BUSINESS", bookingClass:"P", fare:174400, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K/L", fare:42400, changeable:false}
+   ]},
+  {region:"EAS", dest:"上海", variant:"東京発", code:"NRT⇄PVG",
+   period:"2026/6/21 〜 2027/3/31",
+   excl:{jp:"2026/8/7-8/10, 9/19-9/20, 10/6-10/11, 2027/2/10-2/15", os:"2026/9/24-10/4, 2027/2/4-2/7"},
+   fares:[
+     {cabin:"BUSINESS", bookingClass:"P", fare:111500, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:46500, changeable:false}
+   ]},
+  {region:"EAS", dest:"上海", variant:"大阪発", code:"KIX⇄PVG",
+   period:"2026/6/21 〜 2027/3/31",
+   excl:{jp:"2026/8/7-8/10, 9/19-9/20, 10/6-10/11, 2027/2/10-2/15", os:"2026/9/24-10/4, 2027/2/4-2/7"},
+   fares:[
+     {cabin:"BUSINESS", bookingClass:"P", fare:106500, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:42500, changeable:false}
+   ]},
+  {region:"EAS", dest:"北京", variant:"東京発", code:"NRT⇄PEK",
+   period:"2026/6/21 〜 2027/3/31",
+   excl:{jp:"2026/8/7-8/10, 9/19-9/20, 10/6-10/11, 2027/2/10-2/15", os:"2026/9/24-10/4, 2027/2/4-2/7"},
+   fares:[
+     {cabin:"BUSINESS", bookingClass:"P", fare:117500, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:50000, changeable:false}
+   ]},
+  {region:"EAS", dest:"北京", variant:"大阪発", code:"KIX⇄PEK",
+   period:"2026/6/21 〜 2027/3/31",
+   excl:{jp:"2026/8/7-8/10, 9/19-9/20, 10/6-10/11, 2027/2/10-2/15", os:"2026/9/24-10/4, 2027/2/4-2/7"},
+   fares:[
+     {cabin:"BUSINESS", bookingClass:"P", fare:117500, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:46500, changeable:false}
+   ]},
+  {region:"EAS", dest:"広州", code:"CAN",
+   period:"2026/6/21 〜 2027/3/31",
+   excl:{jp:"2026/8/7-8/10, 9/19-9/20, 10/6-10/11, 2027/2/10-2/15", os:"2026/9/24-10/4, 2027/2/4-2/7"},
+   fares:[
+     {cabin:"ECONOMY", bookingClass:"K", fare:63500, changeable:false}
+   ]},
+  {region:"EAS", dest:"大連", code:"DLC",
+   period:"2026/6/21 〜 2027/3/31",
+   excl:{jp:"2026/8/7-8/10, 9/19-9/20, 10/6-10/11, 2027/2/10-2/15", os:"2026/9/24-10/4, 2027/2/4-2/7"},
+   fares:[
+     {cabin:"BUSINESS", bookingClass:"P", fare:122500, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:56500, changeable:false}
+   ]},
+  {region:"EAS", dest:"杭州", code:"HGH",
+   period:"2026/6/21 〜 2027/3/31",
+   excl:{jp:"2026/8/7-8/10, 9/19-9/20, 10/6-10/11, 2027/2/10-2/15", os:"2026/9/24-10/4, 2027/2/4-2/7"},
+   fares:[
+     {cabin:"BUSINESS", bookingClass:"P", fare:127500, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:57000, changeable:false}
+   ]},
+  {region:"EAS", dest:"深圳", code:"SZX",
+   period:"2026/6/21 〜 2027/3/31",
+   excl:{jp:"2026/8/7-8/10, 9/19-9/20, 10/6-10/11, 2027/2/10-2/15", os:"2026/9/24-10/4, 2027/2/4-2/7"},
+   fares:[
+     {cabin:"BUSINESS", bookingClass:"P", fare:136500, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:67500, changeable:false}
+   ]},
+  {region:"EAS", dest:"青島", code:"TAO",
+   period:"2026/6/21 〜 2027/3/31",
+   excl:{jp:"2026/8/7-8/10, 9/19-9/20, 10/6-10/11, 2027/2/10-2/15", os:"2026/9/24-10/4, 2027/2/4-2/7"},
+   fares:[
+     {cabin:"BUSINESS", bookingClass:"P", fare:129500, changeable:false},
+     {cabin:"ECONOMY", bookingClass:"K", fare:69500, changeable:false}
+   ]}
+];
+
+const BOOKING_URL = "https://www.ana.co.jp/ja/jp/international/theme/special_prj/";
+
+let state = {region:"all", cabin:"all", city:"all"};
+
+function render(){
+  let routes = ROUTES.filter(r=>{
+    if(state.region!=="all" && r.region!==state.region)return false;
+    if(state.city!=="all" && r.dest!==state.city)return false;
+    if(state.cabin!=="all" && !r.fares.some(f=>f.cabin===state.cabin))return false;
+    return true;
+  });
+
+  document.getElementById("resultCount").textContent = routes.length;
+
+  const grid = document.getElementById("routeGrid");
+  if(routes.length===0){
+    grid.innerHTML = '<div class="empty-state"><div class="icon">✈️</div><div>該当する路線が見つかりませんでした</div></div>';
+    return;
+  }
+
+  grid.innerHTML = routes.map(r=>{
+    const region = REGIONS[r.region];
+    const fares = state.cabin==="all" ? r.fares : r.fares.filter(f=>f.cabin===state.cabin);
+    const variantTag = r.variant ? `<span class="from-tag">${r.variant}</span>` : '';
+
+    const excl = r.excl ? `
+      <div class="excl">
+        <span class="excl-label">除外</span>
+        ${r.excl.jp?'日本発: '+r.excl.jp:''}
+        ${r.excl.os?'<br>海外発: '+r.excl.os:''}
+      </div>` : '';
+
+    const faresHTML = fares.map(f=>{
+      const cabinClass = f.cabin==="BUSINESS" ? 'biz' : f.cabin==="PREMIUM" ? 'premium' : 'eco';
+      const cabinLabel = f.cabin==="BUSINESS" ? 'ビジネス' : f.cabin==="PREMIUM" ? 'プレエコ' : 'エコノミー';
+      const chg = f.changeable
+        ? '<span class="changeable-tag yes">変更可</span>払い戻し不可（手数料あり）'
+        : '<span class="changeable-tag no">変更不可</span>払い戻し不可';
+      const productTag = f.productName ? `<div style="font-size:10px;color:#666;font-weight:600;margin-bottom:2px;">${f.productName}</div>` : '';
+      return `<div class="fare-row">
+        <div class="fare-cabin ${cabinClass}">
+          <span class="cabin-name">${cabinLabel}</span>
+          <span class="booking-class">クラス: ${f.bookingClass}</span>
+        </div>
+        <div class="fare-info">${productTag}${chg}</div>
+        <div class="fare-amount">${f.fare.toLocaleString()}<span class="yen">円</span><span class="from">〜</span></div>
+      </div>`;
+    }).join('');
+
+    return `<div class="route-card">
+      <div class="route-header">
+        <span class="route-region-tag ${region.tag}">${region.short}</span>
+        <div class="route-destination">
+          ${r.dest}
+          ${variantTag}
+        </div>
+        <div class="route-airport-code">✈ ${r.code}</div>
+      </div>
+      <div class="route-period">
+        <span class="period-label">搭乗期間</span><span class="period-value">${r.period}</span>
+        ${excl}
+      </div>
+      <div class="fares-list">
+        ${faresHTML}
+        <a class="booking-cta" href="${BOOKING_URL}" target="_blank" rel="noopener">ANA公式で${r.dest}を検索 →</a>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// Region filter
+const regionChips = document.getElementById('regionChips');
+let rh = '<button data-region="all" class="all active">すべて</button>';
+Object.entries(REGIONS).forEach(([k,v])=>{
+  const count = ROUTES.filter(r=>r.region===k).length;
+  rh += `<button data-region="${k}">${v.label} (${count})</button>`;
+});
+regionChips.innerHTML = rh;
+
+regionChips.querySelectorAll('button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    state.region = btn.dataset.region;
+    state.city = "all";
+    regionChips.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCityChips();
+    render();
+  });
+});
+
+// Cabin filter
+document.querySelectorAll('#cabinChips button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    state.cabin = btn.dataset.cabin;
+    document.querySelectorAll('#cabinChips button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    render();
+  });
+});
+
+// City chips (auto-rendered based on selected region)
+function renderCityChips(){
+  const area = document.getElementById('cityChipsArea');
+  let visibleRoutes = state.region==="all" ? ROUTES : ROUTES.filter(r=>r.region===state.region);
+  // Group by region to display nicely when "all"
+  let html = '<div class="chip-row"><button data-city="all" class="all active">すべての行き先</button></div>';
+
+  if(state.region==="all"){
+    Object.entries(REGIONS).forEach(([k,v])=>{
+      const cities = Array.from(new Set(ROUTES.filter(r=>r.region===k).map(r=>r.dest)));
+      if(cities.length>0){
+        html += `<div style="margin-top:8px;"><div style="font-size:10px;color:#888;font-weight:700;margin-bottom:4px;letter-spacing:.04em;">${v.label}</div>
+          <div class="chip-row">${cities.map(c=>`<button data-city="${c}">${c}</button>`).join('')}</div></div>`;
+      }
+    });
+  } else {
+    const cities = Array.from(new Set(visibleRoutes.map(r=>r.dest)));
+    html += `<div class="chip-row" style="margin-top:6px;">${cities.map(c=>`<button data-city="${c}">${c}</button>`).join('')}</div>`;
+  }
+
+  area.innerHTML = html;
+  area.querySelectorAll('button[data-city]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      state.city = btn.dataset.city;
+      area.querySelectorAll('button[data-city]').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      render();
+    });
+  });
+}
+
+renderCityChips();
+render();
+</script>
+</body>
+</html>
