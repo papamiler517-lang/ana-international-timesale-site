@@ -4,315 +4,311 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ANA 国際線タイムセール｜2026/5/13-5/17</title>
+<meta name="description" content="ANA国際線タイムセール（販売2026/5/13〜5/17、搭乗2026/6/1〜2027/3/31）の対象路線と運賃を、エリア・クラス・出発地で絞り込める一覧。">
+<meta name="theme-color" content="#0b2a5c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%230b2a5c%22/%3E%3Cpath d=%22M6 18l20-8-6 14-4-5-6 2z%22 fill=%22%23f2946e%22/%3E%3C/svg%3E">
 <style>
   :root{
     --brand-color:#13448f;
-    --brand-color-dark:#0a2858;
-    --brand-color-light:#e3eaf6;
-    --accent:#d97550;
-    --accent-dark:#b85a35;
-    --gold:#c9a847;
+    --brand-color-dark:#0b2a5c;
+    --brand-color-light:#e8eef8;
+    --accent:#c4562f;
+    --accent-dark:#a2431f;
+    --accent-soft:#fcefe9;
+    --gold:#b8922e;
+    --gold-soft:#fbf3dc;
+    --gold-ink:#6b5310;
+    --green:#2b7a3d; --green-soft:#e7f4ea;
+    --red:#c0352c; --red-soft:#fcebe9;
+    --sky:#1e5fa8; --sky-soft:#e7f0fb;
+    --ink:#16202b;
+    --muted:#55626f;
+    --faint:#8a95a1;
+    --line:#e3e7ec;
+    --line-strong:#cdd5de;
+    --surface:#fff;
+    --surface-2:#f6f8fa;
+    --ground:#eef1f5;
+    --on-ink:#fff;
+    --radius:12px;
+    --radius-sm:7px;
+    --focus:0 0 0 3px rgba(19,68,143,.22);
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --brand-color:#8fb3ec;
+      --brand-color-dark:#14284d;
+      --brand-color-light:#1b2a42;
+      --accent:#f2946e;
+      --accent-dark:#c4562f;
+      --accent-soft:#3a2219;
+      --gold:#e3c06a;
+      --gold-soft:#2f2713;
+      --gold-ink:#ecd59a;
+      --green:#77d08b; --green-soft:#15301c;
+      --red:#f19a90; --red-soft:#35201e;
+      --sky:#8cbaf0; --sky-soft:#16263b;
+      --ink:#e6ebf1;
+      --muted:#a7b1bd;
+      --faint:#7c8794;
+      --line:#2a323c;
+      --line-strong:#3a4450;
+      --surface:#161b22;
+      --surface-2:#1c222a;
+      --ground:#0e1217;
+      --on-ink:#0e1217;
+      --focus:0 0 0 3px rgba(143,179,236,.35);
+      color-scheme:dark;
+    }
   }
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  [hidden]{display:none!important}
+  html{-webkit-text-size-adjust:100%}
   body{
-    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
-    background:linear-gradient(180deg,#f5f7fa 0%,#e9eef5 100%);
-    color:#1a2733;line-height:1.55;min-height:100vh;
-    -webkit-font-smoothing:antialiased;padding-bottom:60px
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic",sans-serif;
+    background:var(--ground);color:var(--ink);line-height:1.6;min-height:100vh;
+    -webkit-font-smoothing:antialiased;padding-bottom:56px;font-feature-settings:"palt" 1
   }
+  button,a{font-family:inherit}
+  button:focus-visible,a:focus-visible{outline:none;box-shadow:var(--focus)}
   .container{max-width:1080px;margin:0 auto;padding:16px}
 
   header{
-    background:linear-gradient(135deg,var(--brand-color) 0%,var(--brand-color-dark) 100%);
-    color:#fff;padding:24px 16px;border-radius:14px;
-    box-shadow:0 6px 20px rgba(19,68,143,.25);margin-bottom:16px;
+    background:#0b2a5c;color:#fff;padding:22px 18px 20px;border-radius:16px;margin-bottom:12px;
     position:relative;overflow:hidden
   }
   header::before{
-    content:"";position:absolute;top:-60px;right:-60px;
-    width:220px;height:220px;border-radius:50%;
-    background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%)
+    content:"";position:absolute;top:-60px;right:-50px;width:220px;height:220px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,255,255,.10) 0%,transparent 70%)
   }
-  header h1{font-size:22px;font-weight:700;line-height:1.35;position:relative}
-  header .sub{font-size:13px;opacity:.92;margin-top:6px;font-weight:500;position:relative}
+  header h1{font-size:20px;font-weight:700;line-height:1.4;position:relative}
+  header .sub{font-size:12.5px;color:rgba(255,255,255,.82);margin-top:6px;position:relative}
   header .badge-row{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap;position:relative}
   header .badge{
-    display:inline-block;background:rgba(255,255,255,.18);
-    padding:5px 11px;border-radius:20px;font-size:11px;
-    font-weight:600;letter-spacing:.04em
+    display:inline-flex;align-items:center;gap:6px;
+    border:1px solid rgba(255,255,255,.35);padding:3px 10px;border-radius:999px;
+    font-size:11px;font-weight:600;letter-spacing:.03em
   }
-  header .badge.live{background:#ff3a3a;animation:pulse 1.6s ease-in-out infinite}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+  header .badge.live{background:#e5484d;border-color:#e5484d}
+  header .badge.live::before{
+    content:"";width:6px;height:6px;border-radius:50%;background:#fff;animation:pulse 1.6s ease-in-out infinite
+  }
+  header .badge.ended{background:rgba(255,255,255,.14);border-color:transparent}
+  header .badge.soon{background:#c9a847;border-color:#c9a847;color:#1a1a1a}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 
   .countdown{
-    background:#fff;border-radius:12px;padding:14px;margin-bottom:16px;
-    box-shadow:0 2px 8px rgba(0,0,0,.06);text-align:center;
-    border-top:4px solid var(--accent)
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px;margin-bottom:12px;text-align:center
   }
-  .countdown .label{font-size:11px;color:#666;font-weight:600;letter-spacing:.06em}
-  .countdown .end{font-size:14px;font-weight:700;color:#1a2733;margin-top:4px}
-  .countdown .end .highlight{color:var(--accent);font-size:16px}
+  .countdown .label{font-size:11.5px;color:var(--faint);font-weight:600;letter-spacing:.04em}
+  .countdown .end{font-size:14px;font-weight:600;margin-top:2px}
+  .countdown .end .highlight{color:var(--accent);font-size:16px;font-weight:700;font-variant-numeric:tabular-nums}
+  .countdown .remain{font-size:12px;color:var(--muted);margin-top:4px;font-variant-numeric:tabular-nums}
+  .countdown.is-ended{background:var(--surface-2);border-style:dashed}
+  .countdown.is-ended .end .highlight{color:var(--muted)}
 
   .cta-button{
-    display:block;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-dark) 100%);
-    color:#fff;text-align:center;padding:15px;border-radius:10px;
-    text-decoration:none;font-weight:700;font-size:14.5px;
-    box-shadow:0 2px 8px rgba(184,90,53,.18);margin-bottom:16px;
-    transition:transform .15s, box-shadow .15s;
-    letter-spacing:.02em
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    background:var(--accent);color:#fff;text-align:center;padding:14px;border-radius:10px;
+    text-decoration:none;font-weight:700;font-size:14.5px;margin-bottom:12px;letter-spacing:.02em;
+    transition:background .15s
   }
-  .cta-button:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(184,90,53,.28)}
-  .cta-button::after{content:" →";display:inline-block;margin-left:6px;opacity:.85}
+  .cta-button:hover{background:var(--accent-dark)}
+  .cta-button::after{content:"→";opacity:.85}
+  .cta-button.is-ended{background:var(--surface);color:var(--muted);border:1px solid var(--line-strong)}
 
   .info-box{
-    background:#fff;border-radius:12px;padding:14px 16px;
-    box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:16px;
-    border-left:4px solid var(--brand-color)
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px 16px;margin-bottom:12px
   }
-  .info-box h3{font-size:13px;color:var(--brand-color);font-weight:700;margin-bottom:8px}
-  .info-box dl{font-size:12px;color:#444}
-  .info-box dt{font-weight:700;color:#666;font-size:11px;margin-top:6px}
+  .info-box h3{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:8px;letter-spacing:.02em}
+  .info-box dl{font-size:12.5px;display:grid;grid-template-columns:1fr;gap:2px}
+  .info-box dt{font-weight:700;color:var(--faint);font-size:11px;margin-top:8px}
   .info-box dt:first-child{margin-top:0}
-  .info-box dd{margin-left:0;padding-bottom:4px}
+  .info-box dd{margin-left:0}
 
-  .section-title{
-    font-size:16px;font-weight:700;color:#1a2733;margin:20px 4px 10px;
-    display:flex;align-items:center;gap:8px
-  }
-  .section-title::before{content:"";width:4px;height:18px;background:var(--brand-color);border-radius:2px}
+  .section-title{font-size:15px;font-weight:700;margin:22px 2px 10px}
 
   .filter-section{
-    background:#fff;border-radius:14px;padding:16px;
-    box-shadow:0 2px 12px rgba(0,0,0,.06);margin-bottom:16px
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:16px;margin-bottom:12px
   }
-  .filter-label{
-    font-size:11px;font-weight:700;color:#666;
-    letter-spacing:.08em;margin:0 0 8px;
-    display:flex;align-items:center;gap:6px
-  }
-  .filter-label::before{content:"";width:3px;height:11px;background:var(--brand-color);border-radius:2px}
-  .filter-label:not(:first-child){margin-top:14px}
-
+  .filter-label{font-size:11.5px;font-weight:700;color:var(--faint);letter-spacing:.02em;margin:0 0 8px}
+  .filter-label:not(:first-child){margin-top:16px}
   .chip-row{display:flex;flex-wrap:wrap;gap:6px}
   .chip-row button{
-    padding:7px 12px;border:1.5px solid #d6dde6;background:#fff;
-    border-radius:18px;font-size:12px;font-weight:600;color:#445;
-    cursor:pointer;transition:all .15s;font-family:inherit;white-space:nowrap
+    padding:6px 12px;border:1px solid var(--line-strong);background:var(--surface);
+    border-radius:999px;font-size:12.5px;font-weight:600;color:var(--muted);
+    cursor:pointer;transition:border-color .15s,color .15s,background .15s;white-space:nowrap
   }
   .chip-row button:hover{border-color:var(--brand-color);color:var(--brand-color)}
-  .chip-row button.active{background:#1a2733;color:#fff;border-color:#1a2733}
-  .chip-row button.all{background:var(--brand-color-light);border-color:var(--brand-color)}
-  .chip-row button.all.active{background:var(--brand-color);color:#fff;border-color:var(--brand-color)}
-  .chip-row button.cabin-eco.active{background:#0078a8;border-color:#0078a8}
-  .chip-row button.cabin-pre.active{background:#2d5234;border-color:#2d5234}
+  .chip-row button.active{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+  .chip-row button.all{background:var(--surface-2)}
+  .chip-row button.all.active{background:var(--brand-color);color:var(--on-ink);border-color:var(--brand-color)}
+  .chip-row button.cabin-eco.active{background:var(--sky);border-color:var(--sky);color:var(--on-ink)}
+  .chip-row button.cabin-pre.active{background:var(--green);border-color:var(--green);color:var(--on-ink)}
   .chip-row button.cabin-biz.active{background:var(--gold);border-color:var(--gold);color:#1a1a1a}
 
   .sort-bar{
-    display:flex;gap:6px;flex-wrap:wrap;align-items:center;
-    background:#fff;padding:10px 12px;border-radius:10px;
-    margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.04)
+    display:flex;gap:4px;align-items:center;flex-wrap:wrap;
+    background:var(--surface);border:1px solid var(--line);padding:6px 6px 6px 12px;border-radius:10px;margin-bottom:4px
   }
-  .sort-bar .sort-label{font-size:11px;color:#666;font-weight:700;letter-spacing:.04em}
+  .sort-bar .sort-label{font-size:11.5px;color:var(--faint);font-weight:700;margin-right:auto}
   .sort-bar button{
-    padding:5px 11px;border:1.5px solid #d6dde6;background:#fff;
-    border-radius:14px;font-size:11px;font-weight:600;color:#445;
-    cursor:pointer;font-family:inherit;transition:all .15s
+    padding:6px 12px;border:none;background:none;border-radius:7px;
+    font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;transition:background .15s,color .15s
   }
-  .sort-bar button:hover{border-color:var(--brand-color);color:var(--brand-color)}
-  .sort-bar button.active{background:#1a2733;color:#fff;border-color:#1a2733}
+  .sort-bar button:hover{color:var(--ink)}
+  .sort-bar button.active{background:var(--ink);color:var(--on-ink)}
 
-  .rating-badge{
-    display:inline-block;font-size:10px;font-weight:700;
-    padding:3px 8px;border-radius:4px;letter-spacing:.04em
-  }
-  .rating-must{background:#ffe3e0;color:#c53030;border:1px solid #fcbab2}
-  .rating-good{background:#fff4d6;color:#8a6500;border:1px solid #f5d77c}
-  .rating-okay{background:#e8f5e9;color:#2e7d32;border:1px solid #b6dcb8}
-  .rating-watch{background:#eceff3;color:#666;border:1px solid #d6dde6}
+  .rating-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;letter-spacing:.03em}
+  .rating-must{background:var(--red-soft);color:var(--red)}
+  .rating-good{background:var(--gold-soft);color:var(--gold-ink)}
+  .rating-okay{background:var(--green-soft);color:var(--green)}
+  .rating-watch{background:var(--ground);color:var(--muted)}
 
   .pro-comment{
-    background:linear-gradient(135deg,#fff8e6 0%,#fdf2cc 100%);
-    border-left:3px solid var(--gold);
-    padding:10px 12px;margin:0 14px 12px;border-radius:6px;
-    font-size:11.5px;line-height:1.6;color:#5a4500
+    background:var(--gold-soft);border-left:3px solid var(--gold);
+    padding:10px 12px;margin:0 14px 12px;border-radius:var(--radius-sm);
+    font-size:12px;line-height:1.65;color:var(--gold-ink)
   }
-  .pro-comment .pro-label{
-    font-weight:700;color:#8a6500;font-size:10px;
-    letter-spacing:.04em;margin-right:4px
-  }
+  .pro-comment .pro-label{font-weight:700;font-size:10.5px;letter-spacing:.03em;margin-right:4px}
 
-  .normal-fare{
-    font-size:11px;color:#888;text-decoration:line-through;
-    margin-right:4px;font-weight:500
-  }
+  .normal-fare{font-size:11px;color:var(--faint);text-decoration:line-through;margin-right:4px;font-weight:500;font-variant-numeric:tabular-nums}
   .discount-pct{
-    display:inline-block;font-size:10px;font-weight:700;
-    background:#ffe3e0;color:#c53030;
-    padding:1px 6px;border-radius:3px;margin-right:4px
+    display:inline-block;font-size:10px;font-weight:700;background:var(--red-soft);color:var(--red);
+    padding:1px 6px;border-radius:3px;margin-right:4px;font-variant-numeric:tabular-nums
   }
-
   .more-toggle{
-    width:100%;padding:8px;background:#f5f7fa;border:1px solid #e3e8ef;
-    border-radius:8px;font-size:12px;font-weight:600;color:#445;
-    cursor:pointer;font-family:inherit;margin-top:8px;
-    display:flex;align-items:center;justify-content:center;gap:6px
+    width:100%;padding:8px;background:var(--surface-2);border:1px solid var(--line);
+    border-radius:var(--radius-sm);font-size:12px;font-weight:600;color:var(--muted);
+    cursor:pointer;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:6px
   }
-  .more-toggle:hover{background:#eef1f5}
+  .more-toggle:hover{color:var(--ink);border-color:var(--line-strong)}
   .more-toggle .chevron{font-size:9px;transition:transform .2s}
   .more-toggle.open .chevron{transform:rotate(180deg)}
   .more-cities{display:none}
   .more-cities.show{display:block}
 
   .result-meta{
-    font-size:12px;color:#666;margin:14px 4px 10px;
-    display:flex;justify-content:space-between;align-items:center
+    position:sticky;top:0;z-index:5;
+    font-size:12px;color:var(--faint);margin:8px -16px 8px;padding:10px 18px;
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
+    background:color-mix(in srgb,var(--ground) 88%,transparent);
+    -webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px)
   }
-  .result-meta .count{font-weight:700;color:var(--brand-color)}
+  .result-meta .count{font-weight:700;color:var(--ink);font-size:15px;font-variant-numeric:tabular-nums}
 
-  .route-grid{display:grid;gap:14px}
+  .route-grid{display:grid;gap:10px}
   .route-card{
-    background:#fff;border-radius:12px;
-    box-shadow:0 2px 8px rgba(0,0,0,.06);
-    overflow:hidden;transition:transform .15s
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;transition:border-color .15s
   }
-  .route-card:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.12)}
-
-  .route-header{padding:14px 14px 10px;border-bottom:1px solid #f0f3f7}
-  .route-region-tag{
-    display:inline-block;font-size:10px;font-weight:700;
-    padding:2px 7px;border-radius:4px;margin-bottom:6px;
-    letter-spacing:.04em
-  }
-  .region-NA{background:#fce8e6;color:#c53030}
-  .region-EU{background:#e6f2ff;color:#1e5599}
-  .region-SEA{background:#fff4d6;color:#8a6d00}
-  .region-EAS{background:#e8f5e9;color:#2e7d32}
-
-  .route-destination{
-    font-size:18px;font-weight:800;color:#1a2733;
-    display:flex;align-items:center;gap:8px;flex-wrap:wrap
-  }
-  .route-destination .from-tag{
-    font-size:10px;color:#888;font-weight:600;
-    background:#f5f7fa;padding:2px 7px;border-radius:4px
-  }
-  .route-airport-code{
-    font-size:11px;color:#888;font-family:"SF Mono",Menlo,monospace;
-    margin-top:4px;letter-spacing:.04em
-  }
-
+  .route-card:hover{border-color:var(--line-strong)}
+  .route-header{padding:14px 14px 10px}
+  .route-region-tag{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;margin-bottom:6px;letter-spacing:.03em}
+  .region-NA{background:var(--red-soft);color:var(--red)}
+  .region-EU{background:var(--sky-soft);color:var(--sky)}
+  .region-SEA{background:var(--gold-soft);color:var(--gold-ink)}
+  .region-EAS{background:var(--green-soft);color:var(--green)}
+  .route-destination{font-size:18px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .route-destination .from-tag{font-size:10.5px;color:var(--muted);font-weight:600;background:var(--ground);padding:2px 7px;border-radius:4px}
+  .route-airport-code{font-size:11px;color:var(--faint);font-family:"SF Mono",Menlo,Consolas,monospace;margin-top:3px;letter-spacing:.04em}
   .route-period{
-    padding:10px 14px;background:#fafbfc;font-size:11px;color:#555;
-    border-bottom:1px solid #f0f3f7
+    padding:10px 14px;background:var(--surface-2);font-size:11.5px;color:var(--muted);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line)
   }
-  .route-period .period-label{font-weight:700;color:var(--brand-color);font-size:10px}
-  .route-period .period-value{color:#333;margin-left:4px}
-  .route-period .excl{
-    margin-top:4px;font-size:10px;color:#888;line-height:1.5
-  }
-  .route-period .excl-label{font-weight:700;color:#c53030}
-
-  .fares-list{padding:10px 14px 14px}
+  .route-period .period-label{font-weight:700;color:var(--brand-color);font-size:10.5px}
+  .route-period .period-value{color:var(--ink);margin-left:4px;font-variant-numeric:tabular-nums}
+  .route-period .excl{margin-top:4px;font-size:10.5px;color:var(--faint);line-height:1.55}
+  .route-period .excl-label{font-weight:700;color:var(--red)}
+  .fares-list{padding:6px 14px 14px}
   .fare-row{
     display:grid;grid-template-columns:auto 1fr auto;align-items:center;
-    gap:10px;padding:10px 0;border-bottom:1px dashed #e8ecf1
+    gap:10px;padding:10px 0;border-bottom:1px solid var(--line)
   }
   .fare-row:last-child{border-bottom:none}
-  .fare-cabin{
-    display:flex;flex-direction:column;align-items:center;
-    padding:6px 8px;border-radius:6px;min-width:74px
-  }
-  .fare-cabin.eco{background:#e3eaf6;color:#1e5599}
-  .fare-cabin.biz{background:#fff4d6;color:#8a6d00}
-  .fare-cabin.premium{background:#e0efe3;color:#2d5234}
-  .fare-cabin .cabin-name{font-size:10px;font-weight:700;letter-spacing:.04em}
-  .fare-cabin .booking-class{font-size:9px;margin-top:1px;opacity:.85}
-
-  .fare-info{font-size:11px;color:#666;line-height:1.5}
-  .fare-info .changeable-tag{
-    display:inline-block;font-size:9px;font-weight:700;
-    padding:2px 6px;border-radius:3px;margin-right:4px;
-    letter-spacing:.04em
-  }
-  .changeable-tag.no{background:#fce8e6;color:#c53030}
-  .changeable-tag.yes{background:#e8f5e9;color:#2e7d32}
-
-  .fare-amount{
-    font-size:18px;font-weight:800;color:var(--accent);
-    text-align:right;line-height:1;letter-spacing:-.01em
-  }
-  .fare-amount .yen{font-size:11px;color:#666;font-weight:600;margin-left:1px}
-  .fare-amount .from{font-size:10px;color:#888;font-weight:600;margin-left:1px}
-
+  .fare-cabin{display:flex;flex-direction:column;align-items:center;padding:6px 8px;border-radius:var(--radius-sm);min-width:74px}
+  .fare-cabin.eco{background:var(--sky-soft);color:var(--sky)}
+  .fare-cabin.biz{background:var(--gold-soft);color:var(--gold-ink)}
+  .fare-cabin.premium{background:var(--green-soft);color:var(--green)}
+  .fare-cabin .cabin-name{font-size:10px;font-weight:700;letter-spacing:.03em}
+  .fare-cabin .booking-class{font-size:9.5px;margin-top:1px;opacity:.85}
+  .fare-info{font-size:11px;color:var(--muted);line-height:1.5}
+  .fare-info .changeable-tag{display:inline-block;font-size:9.5px;font-weight:700;padding:1px 6px;border-radius:3px;margin-right:4px;letter-spacing:.03em}
+  .changeable-tag.no{background:var(--red-soft);color:var(--red)}
+  .changeable-tag.yes{background:var(--green-soft);color:var(--green)}
+  .fare-amount{font-size:19px;font-weight:700;color:var(--accent);text-align:right;line-height:1.1;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+  .fare-amount .yen{font-size:11px;color:var(--muted);font-weight:600;margin-left:1px}
+  .fare-amount .from{font-size:10px;color:var(--faint);font-weight:600;margin-left:1px}
   .booking-cta{
-    display:block;text-align:center;padding:10px;margin-top:12px;
-    background:var(--brand-color);color:#fff;text-decoration:none;
-    border-radius:8px;font-size:12px;font-weight:700;
-    transition:background .15s
+    display:block;text-align:center;padding:10px;margin-top:10px;
+    background:var(--surface-2);color:var(--brand-color);text-decoration:none;border:1px solid var(--line-strong);
+    border-radius:var(--radius-sm);font-size:12.5px;font-weight:700;transition:border-color .15s
   }
-  .booking-cta:hover{background:var(--brand-color-dark)}
-
+  .booking-cta:hover{border-color:var(--brand-color)}
   .empty-state{
-    text-align:center;padding:50px 20px;color:#888;
-    background:#fff;border-radius:12px
+    text-align:center;padding:44px 20px;color:var(--faint);font-size:13px;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);grid-column:1/-1
   }
-  .empty-state .icon{font-size:36px;margin-bottom:10px;opacity:.4}
-
+  .empty-state .icon{font-size:30px;margin-bottom:8px;opacity:.45}
   .note-box{
-    background:#fffbf0;border:1px solid #ffe5a0;
-    border-radius:10px;padding:12px 14px;margin-bottom:16px
+    background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--gold);
+    border-radius:var(--radius);padding:14px 16px;margin-bottom:12px
   }
-  .note-box h4{font-size:12px;color:#8a6500;font-weight:700;margin-bottom:6px}
-  .note-box ul{font-size:11px;color:#5a4500;line-height:1.7;padding-left:14px}
+  .note-box h4{font-size:12px;color:var(--ink);font-weight:700;margin-bottom:6px}
+  .note-box ul{font-size:11.5px;color:var(--muted);line-height:1.75;padding-left:16px}
   .note-box li{margin-bottom:3px}
-
-  footer{
-    text-align:center;margin-top:30px;padding:20px;
-    font-size:11px;color:#888;line-height:1.7
-  }
-  footer .official-link{
-    color:var(--brand-color);text-decoration:none;font-weight:700
-  }
+  .note-box strong{color:var(--ink);font-weight:700}
+  footer{text-align:center;margin-top:28px;padding:8px;font-size:11px;color:var(--faint);line-height:1.8}
+  footer .official-link{color:var(--brand-color);text-decoration:none;font-weight:700}
   footer .official-link:hover{text-decoration:underline}
 
   @media(min-width:600px){
     .container{padding:24px}
-    header{padding:30px 24px}
-    header h1{font-size:26px}
+    header{padding:28px 26px 24px}
+    header h1{font-size:24px}
+    .result-meta{margin-left:-24px;margin-right:-24px;padding-left:26px;padding-right:26px}
     .route-grid{grid-template-columns:repeat(2,1fr)}
+    .info-box dl{grid-template-columns:7em 1fr;gap:6px 12px}
+    .info-box dt{margin-top:0}
   }
   @media(min-width:1000px){.route-grid{grid-template-columns:repeat(3,1fr)}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
 <div class="container">
 
   <header>
-    <h1>🌏 ANA 国際線航空券タイムセール</h1>
+    <h1>ANA 国際線航空券タイムセール</h1>
     <div class="sub">エコノミー / ビジネス / プレミアムエコノミー対象</div>
     <div class="badge-row">
-      <span class="badge live">● 開催中</span>
+      <span class="badge" id="saleStatus">開催中</span>
       <span class="badge">販売: 2026/5/13 - 5/17</span>
       <span class="badge">搭乗: 2026/6/1 - 2027/3/31</span>
     </div>
   </header>
 
   <div class="countdown">
-    <div class="label">⏰ セール販売終了</div>
+    <div class="label">セール販売終了</div>
     <div class="end"><span class="highlight">2026年5月17日（日）23:59</span> まで</div>
+    <div class="remain" id="saleRemain"></div>
   </div>
 
-  <a class="cta-button" href="https://www.ana.co.jp/ja/jp/international/theme/special_prj/" target="_blank" rel="noopener">
+  <a class="cta-button sale-cta" href="https://www.ana.co.jp/ja/jp/international/theme/special_prj/" target="_blank" rel="noopener">
     ANA公式サイトで空席照会・予約する
   </a>
 
   <div class="info-box">
-    <h3>📋 タイムセール概要</h3>
+    <h3>タイムセール概要</h3>
     <dl>
       <dt>販売期間</dt>
       <dd>2026年5月13日（水）0:00 〜 5月17日（日）23:59</dd>
       <dt>搭乗期間</dt>
-      <dd>2026年6月1日（月）〜 2027年3月31日（水） <span style="color:#888;font-size:10px;">※路線により搭乗期間・適用除外期間が異なります</span></dd>
+      <dd>2026年6月1日（月）〜 2027年3月31日（水） <span style="color:var(--faint);font-size:10px;">※路線により搭乗期間・適用除外期間が異なります</span></dd>
       <dt>対象クラス</dt>
       <dd>エコノミー／一部路線でビジネスクラス／ハワイ路線でプレミアムエコノミー</dd>
       <dt>運賃に含まれる</dt>
@@ -320,7 +316,7 @@
     </dl>
   </div>
 
-  <div class="section-title">🌏 行き先で絞り込む</div>
+  <div class="section-title">行き先で絞り込む</div>
 
   <div class="filter-section">
     <div class="filter-label">エリア</div>
@@ -347,20 +343,20 @@
 
   <div class="sort-bar">
     <span class="sort-label">並び替え</span>
-    <button data-sort="discount" class="active">🔥 お得順</button>
-    <button data-sort="price">💴 価格安い順</button>
-    <button data-sort="region">🌏 エリア順</button>
+    <button data-sort="discount" class="active">お得順</button>
+    <button data-sort="price">安い順</button>
+    <button data-sort="region">エリア順</button>
   </div>
 
   <div class="result-meta">
     <span><span class="count" id="resultCount">0</span> 路線</span>
-    <span style="font-size:10px;color:#888;">日本発往復運賃（〜から）</span>
+    <span style="font-size:10px;color:var(--faint);">日本発往復運賃（〜から）</span>
   </div>
 
   <div class="route-grid" id="routeGrid"></div>
 
   <div class="note-box" style="margin-top:20px;">
-    <h4>⚠️ ご利用にあたっての注意</h4>
+    <h4>ご利用にあたっての注意</h4>
     <ul>
       <li>表示は <strong>日本発往復運賃の最低価格</strong>。期間・便により異なります</li>
       <li><strong>通常価格目安・割引率・プロ目線コメントは当サイト独自の参考値</strong>であり、ANA公式値ではありません</li>
@@ -373,7 +369,7 @@
     </ul>
   </div>
 
-  <a class="cta-button" href="https://www.ana.co.jp/ja/jp/international/theme/special_prj/" target="_blank" rel="noopener">
+  <a class="cta-button sale-cta" href="https://www.ana.co.jp/ja/jp/international/theme/special_prj/" target="_blank" rel="noopener">
     ANA公式サイトで空席照会・予約する
   </a>
 
@@ -643,10 +639,10 @@ const ROUTES = [
 ];
 
 const RATING_CONFIG = {
-  must: {label:"🔥 超お得", cls:"rating-must"},
-  good: {label:"⭐ お得", cls:"rating-good"},
-  okay: {label:"✓ 標準", cls:"rating-okay"},
-  watch: {label:"⚪ 様子見", cls:"rating-watch"}
+  must: {label:"超お得", cls:"rating-must"},
+  good: {label:"お得", cls:"rating-good"},
+  okay: {label:"標準", cls:"rating-okay"},
+  watch: {label:"様子見", cls:"rating-watch"}
 };
 
 function calcDiscount(fare, normal){
@@ -694,7 +690,7 @@ function render(){
 
   const grid = document.getElementById("routeGrid");
   if(routes.length===0){
-    grid.innerHTML = '<div class="empty-state"><div class="icon">✈️</div><div>該当する路線が見つかりませんでした</div></div>';
+    grid.innerHTML = '<div class="empty-state"><div class="icon">✈</div><div>該当する路線が見つかりませんでした</div></div>';
     return;
   }
 
@@ -716,7 +712,7 @@ function render(){
 
     const proComment = r.proComment ? `
       <div class="pro-comment">
-        <span class="pro-label">💼 プロ目線</span>${r.proComment}
+        <span class="pro-label">プロ目線</span>${r.proComment}
       </div>` : '';
 
     const faresHTML = fares.map(f=>{
@@ -725,11 +721,11 @@ function render(){
       const chg = f.changeable
         ? '<span class="changeable-tag yes">変更可</span>払い戻し不可（手数料あり）'
         : '<span class="changeable-tag no">変更不可</span>払い戻し不可';
-      const productTag = f.productName ? `<div style="font-size:10px;color:#666;font-weight:600;margin-bottom:2px;">${f.productName}</div>` : '';
+      const productTag = f.productName ? `<div style="font-size:10px;color:var(--muted);font-weight:600;margin-bottom:2px;">${f.productName}</div>` : '';
 
       const discount = calcDiscount(f.fare, f.normalFare);
       const normalDisplay = f.normalFare ?
-        `<div style="font-size:10px;color:#888;margin-bottom:2px;">
+        `<div style="font-size:10px;color:var(--faint);margin-bottom:2px;">
           <span class="normal-fare">通常目安 ${f.normalFare.toLocaleString()}円</span>
           ${discount?`<span class="discount-pct">${discount}%OFF</span>`:''}
         </div>` : '';
@@ -755,7 +751,7 @@ function render(){
           ${r.dest}
           ${variantTag}
         </div>
-        <div class="route-airport-code">✈ ${r.code}</div>
+        <div class="route-airport-code">${r.code}</div>
       </div>
       <div class="route-period">
         <span class="period-label">搭乗期間</span><span class="period-value">${r.period}</span>
@@ -831,7 +827,7 @@ function renderCityChips(){
     Object.entries(REGIONS).forEach(([k,v])=>{
       const cities = Array.from(new Set(ROUTES.filter(r=>r.region===k).map(r=>r.dest)));
       if(cities.length>0){
-        html += `<div style="margin-top:8px;"><div style="font-size:10px;color:#888;font-weight:700;margin-bottom:4px;letter-spacing:.04em;">${v.label}</div>
+        html += `<div style="margin-top:8px;"><div style="font-size:10px;color:var(--faint);font-weight:700;margin-bottom:4px;letter-spacing:.04em;">${v.label}</div>
           <div class="chip-row">${cities.map(c=>`<button data-city="${c}">${c}</button>`).join('')}</div></div>`;
       }
     });
@@ -853,6 +849,38 @@ function renderCityChips(){
 
 renderCityChips();
 render();
+
+// =============================================================
+// 販売状況を日時から自動判定（JST）
+// =============================================================
+(function(){
+  const START = new Date('2026-05-13T00:00:00+09:00');
+  const END   = new Date('2026-05-17T23:59:59+09:00');
+  const badge = document.getElementById('saleStatus');
+  const remain = document.getElementById('saleRemain');
+  const box = document.querySelector('.countdown');
+  function tick(){
+    const now = new Date();
+    badge.classList.remove('live','ended','soon');
+    if(now < START){
+      badge.textContent = 'まもなく開始'; badge.classList.add('soon');
+      remain.textContent = '';
+    }else if(now <= END){
+      badge.textContent = '開催中'; badge.classList.add('live');
+      const ms = END - now, d = Math.floor(ms/864e5), h = Math.floor(ms%864e5/36e5), m = Math.floor(ms%36e5/6e4);
+      remain.textContent = `残り ${d ? d+'日 ' : ''}${h}時間${m}分`;
+    }else{
+      badge.textContent = '販売終了'; badge.classList.add('ended');
+      box.classList.add('is-ended');
+      box.querySelector('.label').textContent = 'このセールは終了しました';
+      remain.textContent = '掲載中の運賃は記録用です。現在は購入できません';
+      document.querySelectorAll('.sale-cta').forEach(a=>{ a.classList.add('is-ended'); a.textContent = 'ANA公式で現在のセール・キャンペーンを見る'; });
+      return;
+    }
+    setTimeout(tick, 30000);
+  }
+  tick();
+})();
 </script>
 </body>
 </html>

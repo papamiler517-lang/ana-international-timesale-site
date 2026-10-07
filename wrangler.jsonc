@@ -1,0 +1,9 @@
+{
+  "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  "name": "ana-international-timesale-site",
+  "compatibility_date": "2026-10-01",
+  // 静的サイトのみ。deploy.sh が index.html だけを dist/ に集めてから配信する
+  "assets": {
+    "directory": "./dist"
+  }
+}
